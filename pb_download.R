@@ -4,16 +4,30 @@ library(piggyback)
 # Download files on piggyback
 
 # Boundaries
-pb_download("Datasets/Boundaries/UK_2011_Census_Boundaries__MSOA/UK_2011_Census_Boundaries__MSOA.shp", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0")     # Boundaries of UK MSOAs
-pb_download("Datasets/Boundaries/UK_2011_Census_Boundaries__Euro_Region/UK_2011_Census_Boundaries__Euro_Region.shp", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0")     # Boundaries of UK Regions
-pb_download("Datasets/Boundaries/England_msoa_2011shp/england_msoa_2011.shp", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0")     # Boundaries of England MSOAs 
+# Boundaries of UK MSOAs
+pb_download("Datasets/Boundaries/UK_2011_Census_Boundaries__MSOA/UK_2011_Census_Boundaries__MSOA.shp", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0")     
+pb_download("Datasets/Boundaries/UK_2011_Census_Boundaries__MSOA/UK_2011_Census_Boundaries__MSOA.cpg",  repo= 'PanosTsole87/odmsim/', tag = "v1.0.0")  
+pb_download("Datasets/Boundaries/UK_2011_Census_Boundaries__MSOA/UK_2011_Census_Boundaries__MSOA.dbf",   repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") 
+pb_download("Datasets/Boundaries/UK_2011_Census_Boundaries__MSOA/UK_2011_Census_Boundaries__MSOA.prj",   repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") 
+pb_download("Datasets/Boundaries/UK_2011_Census_Boundaries__MSOA/UK_2011_Census_Boundaries__MSOA.shx",   repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") 
+# Boundaries of UK Regions
+pb_download("Datasets/Boundaries/UK_2011_Census_Boundaries__Euro_Region/UK_2011_Census_Boundaries__Euro_Region.shp", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0")     
+pb_download("Datasets/Boundaries/UK_2011_Census_Boundaries__Euro_Region/UK_2011_Census_Boundaries__Euro_Region.cpg", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") 
+pb_download("Datasets/Boundaries/UK_2011_Census_Boundaries__Euro_Region/UK_2011_Census_Boundaries__Euro_Region.dbf", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") 
+pb_download("Datasets/Boundaries/UK_2011_Census_Boundaries__Euro_Region/UK_2011_Census_Boundaries__Euro_Region.prj", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") 
+pb_download("Datasets/Boundaries/UK_2011_Census_Boundaries__Euro_Region/UK_2011_Census_Boundaries__Euro_Region.shx", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") 
+# Boundaries of England MSOAs 
+pb_download("Datasets/Boundaries/England_msoa_2011shp/england_msoa_2011.shp", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0")  
+pb_download("Datasets/Boundaries/England_msoa_2011shp/england_msoa_2011.dbf", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") 
+pb_download("Datasets/Boundaries/England_msoa_2011shp/england_msoa_2011.prj", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") 
+pb_download("Datasets/Boundaries/England_msoa_2011shp/england_msoa_2011.shx", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") 
 
 # Microdata
 pb_download("Datasets/Microdata/2011CensusMicrodataTeachingFile.csv", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") #Initial Microdata file
 
 # Sociodemographic files
 pb_download("Datasets/Sociodemographic/Data_AGE_ECOACT_OCCUP_SEX_UNIT.csv", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") #Initial Age-Sex Census file
-pb_download("Datasets/Sociodemographic/Data_AGE_ECOACT_HRSWRK_OCCUP_UNIT.csv", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") #Initial Hours of Work Census file
+pb_download("Datasets/Sociodemographic/HoursWorked.csv", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") #Initial Hours of Work Census file
 pb_download("Datasets/Sociodemographic/Occupation.csv", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") #Initial Occupation Census file
 
 # OD files

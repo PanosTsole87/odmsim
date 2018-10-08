@@ -9,7 +9,7 @@ library(rgdal)
 source('Code/Chapter3/Origins_Destinations.R')
 
 # Create Yorkshire boundaries and zone centroids
-boundaries = st_read('England_msoa_2011shp/england_msoa_2011.shp')
+boundaries = st_read('Datasets/Boundaries/England_msoa_2011shp/england_msoa_2011.shp')
 Yorkshire = dplyr::filter(boundaries, grepl('Barnsley|Bradford|Calderdale|Craven|Doncaster|Hambleton|Harrogate|Kingston upon Hull|Kirklees|Leeds|North East Lincolnshire|North Lincolnshire|Richmondshire|Rotherham|Ryedale|Scarborough|Selby|Sheffield|Wakefield|York', name))
 York_cent = st_centroid(Yorkshire)
 

@@ -2,7 +2,7 @@
 library(dplyr)
 library(tmap)
 library(tmaptools)
-source('functions.R')
+source('Code/Chapter4/functions.R')
 library(stplanr)
 
 ints_OD_agg1 = read.csv('Datasets/IPF/ints_OD_agg1.csv')
