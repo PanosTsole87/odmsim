@@ -81,9 +81,19 @@ od_map_leeds_car=tm_shape(leeds)+
 Yorkmap+od_map_leeds_car
 
 # Create histogram
-cardriver_leeds = leeds[leeds$CarDriver!=0, c(23,28)]
+cardriver_leeds = leeds[leeds$CarDriver!=0, c(23,29)]
 cardriver_leeds = rep(cardriver_leeds$distance, cardriver_leeds$CarDriver)
 cardriver_leeds = data.frame(cardriver_leeds)
+#colnames(cardriver_leeds) = 'Car'
+
+carpassenger_leeds = leeds[leeds$CarPassenger!=0, c(24,29)]
+carpassenger_leeds = rep(carpassenger_leeds$distance, carpassenger_leeds$CarPassenger)
+carpassenger_leeds = data.frame(carpassenger_leeds)
+colnames(carpassenger_leeds) = 'cardriver_leeds'
+
+cardriver_leeds = rbind(cardriver_leeds, carpassenger_leeds)
+#class(car_leeds)
+#rm(cardriver_leeds, carpassenger_leeds)
 
 p=ggplot(cardriver_leeds, aes(cardriver_leeds, fill=..count..))
 p+geom_histogram(color = "black", breaks=seq(0, 120000, by =2500))+
@@ -100,7 +110,7 @@ od_map_leeds_bus=tm_shape(leeds)+
 Yorkmap+od_map_leeds_bus
 
 bus_leeds = leeds[leeds$Bus!=0,]
-bus_leeds = rep(bus_leeds$distance, bus_leeds$CarDriver)
+bus_leeds = rep(bus_leeds$distance, bus_leeds$Bus)
 bus_leeds = data.frame(bus_leeds)
 
 p=ggplot(bus_leeds, aes(bus_leeds, fill=..count..))
@@ -118,7 +128,7 @@ od_map_leeds_cycling=tm_shape(leeds)+
 Yorkmap+od_map_leeds_cycling
 
 cycling_leeds = leeds[leeds$Bicycle!=0,]
-cycling_leeds = rep(cycling_leeds$distance, cycling_leeds$CarDriver)
+cycling_leeds = rep(cycling_leeds$distance, cycling_leeds$Bicycle)
 cycling_leeds = data.frame(cycling_leeds)
 
 p=ggplot(cycling_leeds, aes(cycling_leeds, fill=..count..))
@@ -136,7 +146,7 @@ od_map_leeds_pedesrian=tm_shape(leeds)+
 Yorkmap+od_map_leeds_pedesrian
 
 walking_leeds = leeds[leeds$Pedestrian!=0,]
-walking_leeds = rep(walking_leeds$distance, walking_leeds$CarDriver)
+walking_leeds = rep(walking_leeds$distance, walking_leeds$Pedestrian)
 walking_leeds = data.frame(walking_leeds)
 
 p=ggplot(walking_leeds, aes(walking_leeds, fill=..count..))

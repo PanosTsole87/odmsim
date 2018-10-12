@@ -17,11 +17,11 @@ OD_SexAge_Mode = read.csv('Datasets/OD/OD_SexAge_Mode.csv')
 OD_SexAge_Mode$Workplace=as.character( OD_SexAge_Mode$Workplace)
 
 Destinations_msoa = UK_boundaries[UK_boundaries$AREA_ID %in% OD_SexAge_Mode$Workplace, ]
-Destinations_msoa1 = Destinations_msoa[,-4]
-cols=colnames(Destinations_msoa1)
+Destinations_msoa1 = Destinations_msoa[,-5] # delete the Local Authority column
+cols=colnames(Destinations_msoa1) # Save the colnames of Destinations_msoa1 df to pass it later to another df of 4 columns and bind them
 
 Destinations_regions = UK_boundaries_regions[UK_boundaries_regions$FIRST_CODE %in% OD_SexAge_Mode$Workplace, ]
-colnames(Destinations_regions)=cols
+colnames(Destinations_regions)=cols # Pass the colnames of the Destinations_msoa1 df to the Destinations_regions df. Both of them have 4 columns
 
 Destinations=rbind(Destinations_msoa1, Destinations_regions)
 
