@@ -735,7 +735,7 @@ The second part of validation, external validation, was performed using the “H
 **Table 4.4:** Fit statistics of “Hours worked per week”
 
 ```{r, echo=F, warning=F, message=F}
-source('Code/Chapter4/IPF_fitStats.R')
+#source('Code/Chapter4/IPF_fitStats.R')
 
 kable(ext_fitStats_df)%>% 
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, position = "left")

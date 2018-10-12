@@ -141,32 +141,32 @@ ggplot(ints_agg, aes(x=Female, y=Initial_Female)) + geom_point(aes(size=Female),
 
 
 # Age plots
-p=ggplot(ints_agg, aes(x=`16_24`, y=Initial_16_24)) + geom_point(aes(size=`16_24`), color="blue", alpha = 0.2 )+
+p=ggplot(ints_agg, aes(x=`X16_24`, y=Initial_16_24)) + geom_point(aes(size=`X16_24`), color="blue", alpha = 0.2 )+
   labs(x="Real 16-24 totals", y = "Simulated 16-24 totals")+theme(text = element_text(size=15))+
   geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
 p + labs(size= "16-24 \nyears old")
 
-p=ggplot(ints_agg, aes(x=`25-34`, y=Initial_25_34)) + geom_point(aes(size=`25-34`), color="blue", alpha = 0.2 )+
+p=ggplot(ints_agg, aes(x=`X25.34`, y=Initial_25_34)) + geom_point(aes(size=`X25.34`), color="blue", alpha = 0.2 )+
   labs(x="Real 25-34 totals", y = "Simulated 25-34 totals")+theme(text = element_text(size=15))+
   geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
 p + labs(size= "25-34 \nyears old")
 
-p=ggplot(ints_agg, aes(x=`35_44`, y=Initial_35_44)) + geom_point(aes(size=`35_44`), color="blue", alpha = 0.2 )+
+p=ggplot(ints_agg, aes(x=`X35_44`, y=Initial_35_44)) + geom_point(aes(size=`X35_44`), color="blue", alpha = 0.2 )+
   labs(x="Real 35-44 totals", y = "Simulated 35-44 totals")+theme(text = element_text(size=15))+
   geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
 p + labs(size= "35-44 \nyears old")
 
-p=ggplot(ints_agg, aes(x=`45-54`, y=Initial_45_54)) + geom_point(aes(size=`45-54`), color="blue", alpha = 0.2 )+
+p=ggplot(ints_agg, aes(x=`X45.54`, y=Initial_45_54)) + geom_point(aes(size=`X45.54`), color="blue", alpha = 0.2 )+
   labs(x="Real 45-54 totals", y = "Simulated 45-54 totals")+theme(text = element_text(size=15))+
   geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
 p + labs(size= "45-54 \nyears old")
 
-p=ggplot(ints_agg, aes(x=`55-64`, y=Initial_55_64)) + geom_point(aes(size=`55-64`), color="blue", alpha = 0.2 )+
+p=ggplot(ints_agg, aes(x=`X55.64`, y=Initial_55_64)) + geom_point(aes(size=`X55.64`), color="blue", alpha = 0.2 )+
   labs(x="Real 55-64 totals", y = "Simulated 55-64 totals")+theme(text = element_text(size=15))+
   geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
 p + labs(size= "55-64 \nyears old")
 
-p=ggplot(ints_agg, aes(x=`65-74`, y=Initial_65_74)) + geom_point(aes(size=`65-74`), color="blue", alpha = 0.2 )+
+p=ggplot(ints_agg, aes(x=`X65.74`, y=Initial_65_74)) + geom_point(aes(size=`X65.74`), color="blue", alpha = 0.2 )+
   labs(x="Real 65-74 totals", y = "Simulated 65-74 totals")+theme(text = element_text(size=15))+
   geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
 p + labs(size= "65-74 \nyears old")
@@ -273,6 +273,8 @@ ext_Relative_Error = c(ext_re1, ext_re2, ext_re3, ext_re4)
 
 ext_fitStats_df = cbind(ext_Variable, ext_Pearson_correlation, ext_Relative_Error) 
 ext_fitStats_df = data.frame(ext_fitStats_df)
+
+colnames(ext_fitStats_df) = c('Variable', 'Pearson_correlation', 'Relative_Error') # Change colnames
 
 
 p=ggplot(ints_agg, aes(x=`HW_1`, y=Initial_HW1)) + geom_point(aes(size=`HW_1`), color="blue", alpha = 0.2 )+
