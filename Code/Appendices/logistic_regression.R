@@ -1,3 +1,5 @@
+library(pscl)
+
 # Logistic Regression
 
 source('Code/Chapter3/DataPreparation_Microdata.R')
@@ -187,8 +189,7 @@ summary(classifier)
 anova(classifier, test="Chisq")
 
 #### Find R2 ################################################################
-#install.packages('pscl')
-library(pscl)
+
 R_sq = pR2(classifier)
 
 Mc_Fadden_R_squared = c(round(R_sq[4], 3), '-', '-')
