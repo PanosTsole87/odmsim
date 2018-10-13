@@ -14,7 +14,7 @@ bibliography: MScDissertation.bib
 csl: harvard-university-of-leeds.csl
 ---
 
-## Packages used
+# Packages used
 
 To reproduce this paper you need the following packages:
 
@@ -572,7 +572,7 @@ kable(t_mode_perc) %>%
 
 [Source: Self-composed]
 
-Based on the Census data, taking the city centre of Leeds as an example, car commuting trips (*Figure 3.12*) have a larger radius than bus trips (*Figure 3.14*). Specifically, car trips, as depicted in *Figure 3.13*, have a median distance of 9.88km, while bus trips seem to be around a certain buffer from the examined zone, with a median distance of 9.16km (*Figure 3.15*). On the other hand, cycling (*Figure 3.16*) and walking (*Figure 3.18*), as expected, have a far less median distance of 7.4 (*Figure 3.17*) and 8.04km (*Figure 3.19*), respectively. The larger median walking distance is an indicator of the low cycling usage in Leeds, in general, and of the city’s well-known hilly environment, a major hindrance to cycling’s uptake. Nonetheless, from those plots, various reporting errors, previously mentioned in *Chapter 2* and characteristic of traditional surveys, can be seen, such as the great number of pedestrian trips at distances more than 10km. Even if the distance measured refers only to the straight distance between zone centroids, the majority of those trips should be at a distance that prohibits the full journey to be completed by walking and are probably a result of the respondent’s misreporting or misunderstanding.
+Based on the Census data, taking the city centre of Leeds as an example, car commuting trips (*Figure 3.12*) have a larger radius than bus trips (*Figure 3.14*). Specifically, car trips, as depicted in *Figure 3.13*, have a median distance of 9.51km, bus trips seem to be around a certain buffer from the examined zone, with a median distance of 5.34km (*Figure 3.15*). Cycling trips (*Figure 3.16*) have a median distance of 4.96km (*Figure 3.17*) and finally pedestrian trips (*Figure 3.18*) have a far less median distance of 2.37km, as expected (*Figure 3.19*). From the last plot of pedestrian trip distances, various reporting errors, previously mentioned in *Chapter 2* and characteristic of traditional surveys, can be seen, such as the great number of pedestrian trips at distances more than 10km. Even if the distance measured refers only to the straight distance between zone centroids, the majority of those trips should be at a distance that prohibits the full journey to be completed by walking and are probably a result of the respondent’s misreporting or misunderstanding. (*For the code to create these maps and plots see Code/Chapter3/OD_pairs.R*)
 
 
 ```{r, echo=FALSE, fig.cap='**Figure 3.12:** Car commuting trips attracted to Leeds city centre [Source: Self-composed]'}
@@ -730,7 +730,7 @@ kable(IPF_fitStats_df)%>%
 
 ####	External validation
 
-The second part of validation, external validation, was performed using the “Hours worked per week” as the target variable and comparing the simulated values with the real ones. As it can be seen from *Table 4.4*, the fit statistics are worse compared to the constraint variables, as expected. Nonetheless, even if this variable was not used in the IPF, its simulated values are close enough to the real ones *(corr>0,8)*, except from the first level, which contains the least total values. Scatter plots for each variable level are also presented in *Appendix III (Figures A.38-A.41)*.
+The second part of validation, external validation, was performed using the “Hours worked per week” as the target variable and comparing the simulated values with the real ones. As it can be seen from *Table 4.4* (*see Code/Chapter4/IPF_fitStats.R*), the fit statistics are worse compared to the constraint variables, as expected. Nonetheless, even if this variable was not used in the IPF, its simulated values are close enough to the real ones *(corr>0,8)*, except from the first level, which contains the least total values. Scatter plots for each variable level are also presented in *Appendix III (Figures A.38-A.41)*.
 
 **Table 4.4:** Fit statistics of “Hours worked per week”
 
@@ -747,7 +747,7 @@ kable(ext_fitStats_df)%>%
 
 ###	Spatial microdata results
 
-After the successful allocation of individuals to the MSOA zones, a new column is added to the created spatial microdata with the code of each zone, representing the Origin or the area of residence. In *Table 4.5* the first 5 individuals of *Table 3.2* are presented with the new Origin zone column depicting only one of the zones each individual is allocated to. Furthermore, in *Figure 4.3* their Origin zones are depicted inside the region of Yorkshire and are coloured according to their gender.
+After the successful allocation of individuals to the MSOA zones, a new column is added to the created spatial microdata with the code of each zone, representing the Origin or the area of residence. In *Table 4.5* (*see Code/Chapter4/Sampled_individuals.R*) the first 5 individuals of *Table 3.2* are presented with the new Origin zone column depicting only one of the zones each individual is allocated to. Furthermore, in *Figure 4.3* their Origin zones are depicted inside the region of Yorkshire and are coloured according to their gender.
 
 **Table 4.5:** Spatial microdata for the first 5 individuals
 
@@ -784,7 +784,7 @@ Yorkmap+sampled_map
 
 ```
 
-As previously mentioned, the main advantage of Spatial Microsimulation and the creation of the spatial microdata is the ability to map the spatial distribution of variables that were previously included only in the microdata and not in the aggregated datasets, hence they did not contain any geographic information. Taking the “Approximated Social Grade” variable as an example, although its real spatial distribution for the employed population is unknown, its simulated distribution can be derived as a result of Spatial Microsimulation *(Figures 4.4-4.7)*.
+As previously mentioned, the main advantage of Spatial Microsimulation and the creation of the spatial microdata is the ability to map the spatial distribution of variables that were previously included only in the microdata and not in the aggregated datasets, hence they did not contain any geographic information. Taking the “Approximated Social Grade” variable as an example, although its real spatial distribution for the employed population is unknown, its simulated distribution can be derived as a result of Spatial Microsimulation *(Figures 4.4-4.7)* (*see Code/Chapter4/IPF_fitStats.R*).
 
 ```{r, echo=F, fig.cap='**Figure 4.4:** Spatial distribution of employed individuals with Social Grade A-B [Self-composed]'}
 
@@ -853,7 +853,7 @@ grid.raster(img49)
 
 ###	Fit statistics
 
-The fit statistics of the second phase showed a high level of accuracy, as the first phase. The zonal totals, again, managed to achieve a perfect fit, while both Gender variable levels were simulated very close to reality, as well. The Age variable levels showed a larger relative error but at acceptable margins, with the “Over 75” years of age level again being the one with the worst fit, as presented in *Table 4.6* and illustrated in the scatter plots of *Appendix IV (Figures A.42-A.51)*.
+The fit statistics of the second phase showed a high level of accuracy, as the first phase. The zonal totals, again, managed to achieve a perfect fit, while both Gender variable levels were simulated very close to reality, as well. The Age variable levels showed a larger relative error but at acceptable margins, with the “Over 75” years of age level again being the one with the worst fit, as presented in *Table 4.6* (*see Code/Chapter4/IPF_OD_fitStats.R*) and illustrated in the scatter plots of *Appendix IV (Figures A.42-A.51)*.
 
 **Table 4.6:** Fit statistics of OD Microdata
 
@@ -868,7 +868,7 @@ kable(OD_fitStats_df)%>%
 
 ### OD microdata results
 
-After the successful allocation of individuals to the respective Destinations, the newly defined “Origin-Destination (OD) microdata” is created with a new column added depicting the Destination or Workplace of each individual, as presented in *Table 4.7*. Furthermore, in *Figure 4.10* OD desire lines for the first 5 individuals are depicted, with the green-coloured zones representing their Origin-Residence and the orange-coloured zones their Destination-Workplace.
+After the successful allocation of individuals to the respective Destinations, the newly defined “Origin-Destination (OD) microdata” is created with a new column added depicting the Destination or Workplace of each individual, as presented in *Table 4.7* (*see Code/Chapter4/Sampled_individuals.R'*). Furthermore, in *Figure 4.10* OD desire lines for the first 5 individuals are depicted, with the green-coloured zones representing their Origin-Residence and the orange-coloured zones their Destination-Workplace.
 
 **Table 4.7:** OD microdata for the first 5 individuals
 
@@ -961,7 +961,7 @@ In the third and final phase, the last OD per Mode dataset was utilised to alloc
 
 ###	Final dataset
 
-The final simulated dataset after the implementation of all three methodological phases is presented in *Table 4.8* (only for the first 5 individuals). As it is depicted, a new column “Mode” is added referring to the preferred method of commuting that was allocated by Random Sampling to each individual. In *Figure 4.15*, the 5 sampled individuals and their desire lines, coloured based on their mode, are mapped, where it could be seen that the two individuals, who use train, are commuting at a much larger distance than people, who use other modes. Noteworthy is the fact that the third individual *(Person ID: 7407445)* lives at a close distance to his workplace and he is mainly working from home *(northern part of the map)*. A future research could also focus on telecommuting and its correlation with the distance from the workplace and the industry type. 
+The final simulated dataset after the implementation of all three methodological phases is presented in *Table 4.8* (only for the first 5 individuals) (*see Code/Chapter4/Sampled_individuals.R*). As it is depicted, a new column “Mode” is added referring to the preferred method of commuting that was allocated by Random Sampling to each individual. In *Figure 4.15*, the 5 sampled individuals and their desire lines, coloured based on their mode, are mapped, where it could be seen that the two individuals, who use train, are commuting at a much larger distance than people, who use other modes. Noteworthy is the fact that the third individual *(Person ID: 7407445)* lives at a close distance to his workplace and he is mainly working from home *(northern part of the map)*. A future research could also focus on telecommuting and its correlation with the distance from the workplace and the industry type. 
 
 **Table 4.8:** Final simulated dataset
 
@@ -1035,7 +1035,7 @@ kable(Scenarios)%>%
 
 ## Aggregate-level analysis
 
-With the use of the OD microdata, researchers can aggregate certain individual variables to derive interesting insights that were previously not included in the Census data. For the current case-study, these insights could refer to the commuter’s sociodemographic characteristics and their preferred commuting mode. From the variables included in the microdata, the “Approximated Social Grade” can act as a proxy of purchasing power, as presented in the graph of *Appendix V (Figure A.53)*. Analysis of the Social Grade and Mode of travel for commuters affected from the scheme is presented in *Table 5.2* (*see Code/Chapter4/case_study.R*). The same kind of analysis can also be conducted for every variable of interest. As depicted in the histogram of *Figure 5.1* (*see Code/Chapter4/case_study.R*) both commuting populations have a similar social grade distribution, as Mode was randomly allocated without any prior knowledge of the underlying relation with any of the existing microdata variables.
+With the use of the OD microdata, researchers can aggregate certain individual variables to derive interesting insights that were previously not included in the Census data. For the current case-study, these insights could refer to the commuter’s sociodemographic characteristics and their preferred commuting mode. From the variables included in the microdata, the “Approximated Social Grade” can act as a proxy of purchasing power, as presented in the graph of *Appendix V (Figure A.53)*. Analysis of the Social Grade and Mode of travel for commuters affected from the scheme is presented in *Table 5.2* (*see Code/Chapter5/case_study.R*). The same kind of analysis can also be conducted for every variable of interest. As depicted in the histogram of *Figure 5.1* both commuting populations have a similar social grade distribution, as Mode was randomly allocated without any prior knowledge of the underlying relation with any of the existing microdata variables.
 
 **Table 5.2:** Number of commuters affected based on their social grade
 
@@ -1053,7 +1053,7 @@ kable(affected_population2)%>%
 [Source: Self-composed]
 
 ```{r, echo=F, fig.cap='**Figure 5.1:** Social grade distribution of affected car and PT commuters [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 p <-ggplot(affected_population3, aes(x=Social_Grade, y=value, fill=variable))
 p +geom_bar(stat = "identity", position='dodge')+

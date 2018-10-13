@@ -102,7 +102,7 @@ p+geom_histogram(color = "black", breaks=seq(0, 120000, by =2500))+
              color="red", linetype="dashed", size=1)+
   labs(x = "Distance (m)", y = 'Car commuting trips')
 
-
+median(cardriver_leeds$cardriver_leeds)
 
 # Bus
 od_map_leeds_bus=tm_shape(leeds)+
@@ -120,7 +120,7 @@ p+geom_histogram(color = "black", breaks=seq(0, 120000, by =2500))+
              color="red", linetype="dashed", size=1)+
   labs(x = "Distance (m)", y = 'Bus commuting trips')
 
-
+median(bus_leeds$bus_leeds)
 
 # Cycling
 od_map_leeds_cycling=tm_shape(leeds)+
@@ -138,7 +138,7 @@ p+geom_histogram(color = "black", breaks=seq(0, 120000, by =2500))+
              color="red", linetype="dashed", size=1)+
   labs(x = "Distance (m)", y = 'Cycling commuting trips')
 
-
+median(cycling_leeds$cycling_leeds)
 
 # Walking
 od_map_leeds_pedesrian=tm_shape(leeds)+
@@ -156,6 +156,7 @@ p+geom_histogram(color = "black", breaks=seq(0, 120000, by =2500))+
              color="red", linetype="dashed", size=1)+
   labs(x = "Distance (m)", y = 'Pedestrian commuting trips')
 
+median(walking_leeds$walking_leeds)
 
 # Occupancy rate inside the region
 (sum(desire_lines_intra_nonendo$CarDriver) + sum(desire_lines_intra_nonendo$CarPassenger))/sum(desire_lines_intra_nonendo$CarDriver)

@@ -593,7 +593,7 @@ The data used for this analysis was the initial microdata, filtered to include o
 *	Religion: 2 levels *(Reference level 1: No religion)*
 *	Approximated Social grade: 4 levels *(Reference level 1: AB)*
 
-The results of this analysis, depicted in *Table A.1*, show interesting insights on the different factors of employability and their significance. For instance, females have a coefficient of -0.468 of being employed, meaning a 62.6% (e^-0.468^) less chances of employability compared to males, all else being equal. Furthermore, holding everything else at a fixed value, as age increases until the band of 45-54 the chances of employability also tend to increase, compared to the 16-24 age band. Specifically, individuals between 25-34, 35-44 and 45-54 have 62.3%, 95.4% and 99.9% more chances, respectively of being employed. In addition, individuals with very good health are more likely to be in employment than those with less good health levels, white people of white ethnicity tend to have better chances than others. At a first glance, the results show a level of discrimination among employers in the region, but a more thorough research needs to take place, in order for more concrete inferences to be derived.
+The results of this analysis, depicted in *Table A.1* (*see Code/Appendices/logistic_regression.R*), show interesting insights on the different factors of employability and their significance. For instance, females have a coefficient of -0.468 of being employed, meaning a 62.6% (e^-0.468^) less chances of employability compared to males, all else being equal. Furthermore, holding everything else at a fixed value, as age increases until the band of 45-54 the chances of employability also tend to increase, compared to the 16-24 age band. Specifically, individuals between 25-34, 35-44 and 45-54 have 62.3%, 95.4% and 99.9% more chances, respectively of being employed. In addition, individuals with very good health are more likely to be in employment than those with less good health levels, white people of white ethnicity tend to have better chances than others. At a first glance, the results show a level of discrimination among employers in the region, but a more thorough research needs to take place, in order for more concrete inferences to be derived.
 
 ```{r, echo=F, results=F, warning=F, message=F}
 source('Code/Appendices/logistic_regression.R')
@@ -606,6 +606,8 @@ source('Code/Appendices/logistic_regression.R')
 kable(Results_table)%>% 
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, position = "left") 
 ```
+
+*(Note: \*\*\*, \*\*, \* Significant at the 99%, 95% and 90% confidence level, respectively)*
 
 [Source: Self-composed]
 
