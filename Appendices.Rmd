@@ -1,0 +1,494 @@
+---
+title: "Appendices"
+author: "PanosTsoleridis"
+date: "12 October 2018"
+output: 
+  html_document:
+    html_document:
+    toc: true # table of content true
+    toc_depth: 5  # upto five depths of headings (specified by #, ##, ### etc.)
+    toc_float: true
+    number_sections: true  # if you want number sections at each table header
+    theme: default 
+bibliography: MScDissertation.bib
+csl: harvard-university-of-leeds.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(mapview)
+library(png)
+library(grid)
+```
+
+# Appendix I: Spatial distribution of constraint variables
+
+```{r, echo=F, message=F, warning=F, results=F}
+source('Code/Appendices/Appendix_I.R')
+
+```
+
+```{r, echo=F}
+
+mapviewOptions(vector.palette = colorRampPalette(c("snow", "cornflowerblue", "grey10")))
+
+mapview(Initial_spatial, zcol = 'Male_perc', legend = T, alpha = 0.5, layer.name = 'Male percentage')
+```
+
+**Figure A.1:** Spatial distribution of male employed individuals [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Female_perc', legend = T, alpha = 0.5, layer.name = 'Female percentage')
+
+```
+
+**Figure A.2:** Spatial distribution of female employed individuals [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Age.16_24_perc', legend = T, alpha = 0.5, layer.name = 'Age 16-24 percentage')
+
+```
+
+**Figure A.3:** Spatial distribution of employed individuals between 16-24 years old [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Age.25_34_perc', legend = T, alpha = 0.5, layer.name = 'Age 25-34 percentage')
+
+```
+
+**Figure A.4:** Spatial distribution of employed individuals between 25-34 years old [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Age.35_44_perc', legend = T, alpha = 0.5, layer.name = 'Age 35-44 percentage')
+
+```
+
+**Figure A.5:** Spatial distribution of employed individuals between 35-44 years old [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Age.45_54_perc', legend = T, alpha = 0.5, layer.name = 'Age 45-54 percentage')
+
+```
+
+**Figure A.6:** Spatial distribution of employed individuals between 45-54 years old [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Age.55_64_perc', legend = T, alpha = 0.5, layer.name = 'Age 55-64 percentage')
+
+```
+
+**Figure A.7:** Spatial distribution of employed individuals between 55-64 years old [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Age.65_74_perc', legend = T, alpha = 0.5, layer.name = 'Age 65-74 percentage')
+
+```
+
+**Figure A.8:** Spatial distribution of employed individuals between 65-74 years old [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Age.Over75_perc', legend = T, alpha = 0.5, layer.name = 'Age Over 75 percentage')
+
+```
+
+**Figure A.9:** Spatial distribution of employed individuals over 75 years old [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Occ1_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 1 percentage')
+
+```
+
+**Figure A.10:** Spatial distribution of individuals employed as Managers-Directors-Seniors [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Occ2_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 2 percentage')
+
+```
+
+**Figure A.11:** Spatial distribution of individuals employed in professional occupations [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Occ3_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 3 percentage')
+
+```
+
+**Figure A.12:** Spatial distribution of individuals employed in associate professional and technical occupations [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Occ4_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 4 percentage')
+
+```
+
+**Figure A.13:** Spatial distribution of individuals employed in administrative-secretarial positions [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Occ5_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 5 percentage')
+
+```
+
+**Figure A.14:** Spatial distribution of individuals employed in skilled trades [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Occ6_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 6 percentage')
+
+```
+
+**Figure A.15:** Spatial distribution of individuals employed in Caring-Leisure-Other [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Occ7_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 7 percentage')
+
+```
+
+**Figure A.16:** Spatial distribution of individuals employed in Sales-Customer services [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Occ8_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 8 percentage')
+
+```
+
+**Figure A.17:** Spatial distribution of individuals employed in Process-Plant-Machine operatives [Source: Self-composed]
+
+```{r, echo=F}
+
+mapview(Initial_spatial, zcol = 'Occ9_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 9 percentage')
+
+```
+
+**Figure A.18:** Spatial distribution of individuals employed in Elementary occupations [Source: Self-composed] 
+
+# Appendix II: Internal validation-Fit statistics of spatial microdata
+
+```{r, echo=F, warning=F, results=F, message=F}
+source('Code/Chapter4/IPF_fitStats.R')
+```
+
+```{r, echo=F}
+ggplot(ints_agg, aes(x=Total, y=initial_Total)) + geom_point(aes(size=Total), color="blue", alpha = 0.2 )+
+  labs(x="Real zonal totals", y = "Simulated zonal totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+
+```
+
+**Figure A.19:** Real and simulated values of zonal totals [Source: Self-composed]
+
+```{r, echo=F}
+ggplot(ints_agg, aes(x=Male, y=Initial_Male)) + geom_point(aes(size=Male), color="blue", alpha = 0.2 )+
+  labs(x="Real Male totals", y = "Simulated Male totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+
+```
+
+**Figure A.20:** Real and simulated values of employed males [Source: Self-composed]
+
+```{r, echo=F}
+ggplot(ints_agg, aes(x=Female, y=Initial_Female)) + geom_point(aes(size=Female), color="blue", alpha = 0.2 )+
+  labs(x="Real Female totals", y = "Simulated Female totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+
+```
+
+**Figure A.21:** Real and simulated values of employed females [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`X16_24`, y=Initial_16_24)) + geom_point(aes(size=`X16_24`), color="blue", alpha = 0.2 )+
+  labs(x="Real 16-24 totals", y = "Simulated 16-24 totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "16-24 \nyears old")
+
+```
+
+**Figure A.22:** Real and simulated values of employed individuals between 16-24 years old [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`X25.34`, y=Initial_25_34)) + geom_point(aes(size=`X25.34`), color="blue", alpha = 0.2 )+
+  labs(x="Real 25-34 totals", y = "Simulated 25-34 totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "25-34 \nyears old")
+
+```
+
+**Figure A.23:** Real and simulated values of employed individuals between 25-34 years old [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`X35_44`, y=Initial_35_44)) + geom_point(aes(size=`X35_44`), color="blue", alpha = 0.2 )+
+  labs(x="Real 35-44 totals", y = "Simulated 35-44 totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "35-44 \nyears old")
+
+```
+
+**Figure A.24:** Real and simulated values of employed individuals between 35-44 years old [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`X45.54`, y=Initial_45_54)) + geom_point(aes(size=`X45.54`), color="blue", alpha = 0.2 )+
+  labs(x="Real 45-54 totals", y = "Simulated 45-54 totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "45-54 \nyears old")
+
+```
+
+**Figure A.25:** Real and simulated values of employed individuals between 45-54 years old [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`X55.64`, y=Initial_55_64)) + geom_point(aes(size=`X55.64`), color="blue", alpha = 0.2 )+
+  labs(x="Real 55-64 totals", y = "Simulated 55-64 totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "55-64 \nyears old")
+
+```
+
+**Figure A.26:** Real and simulated values of employed individuals between 55-64 years old [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`X65.74`, y=Initial_65_74)) + geom_point(aes(size=`X65.74`), color="blue", alpha = 0.2 )+
+  labs(x="Real 65-74 totals", y = "Simulated 65-74 totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "65-74 \nyears old")
+
+```
+
+**Figure A.27:** Real and simulated values of employed individuals between 65-74 years old [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`Over75`, y=Initial_Over75)) + geom_point(aes(size=`Over75`), color="blue", alpha = 0.2 )+
+  labs(x="Real Over 75 totals", y = "Simulated Over 75 totals")+
+  theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Over 75 \nyears old")
+
+```
+
+**Figure A.28:** Real and simulated values of employed individuals over 75 years old [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`Occ1`, y=Initial_Occ1)) + geom_point(aes(size=`Occ1`), color="blue", alpha = 0.2 )+
+  labs(x="Real Occupation 1 totals", y = "Simulated Occupation 1 totals")+
+  theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Occupation 1")
+
+```
+
+**Figure A.29:** Real and simulated values of Occupation 1 employed individuals [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`Occ2`, y=Initial_Occ2)) + geom_point(aes(size=`Occ2`), color="blue", alpha = 0.2 )+
+  labs(x="Real Occupation 2 totals", y = "Simulated Occupation 2 totals")+
+  theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Occupation 2")
+
+```
+
+**Figure A.30:** Real and simulated values of Occupation 2 employed individuals [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`Occ3`, y=Initial_Occ3)) + geom_point(aes(size=`Occ3`), color="blue", alpha = 0.2 )+
+  labs(x="Real Occupation 3 totals", y = "Simulated Occupation 3 totals")+
+  theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Occupation 3")
+
+```
+
+**Figure A.31:** Real and simulated values of Occupation 3 employed individuals [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`Occ3`, y=Initial_Occ3)) + geom_point(aes(size=`Occ3`), color="blue", alpha = 0.2 )+
+  labs(x="Real Occupation 3 totals", y = "Simulated Occupation 3 totals")+
+  theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Occupation 3")
+
+```
+
+**Figure A.31:** Real and simulated values of Occupation 3 employed individuals [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`Occ4`, y=Initial_Occ4)) + geom_point(aes(size=`Occ4`), color="blue", alpha = 0.2 )+
+  labs(x="Real Occupation 4 totals", y = "Simulated Occupation 4 totals")+
+  theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Occupation 4")
+
+```
+
+**Figure A.32:** Real and simulated values of Occupation 4 employed individuals [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`Occ5`, y=Initial_Occ5)) + geom_point(aes(size=`Occ5`), color="blue", alpha = 0.2 )+
+  labs(x="Real Occupation 5 totals", y = "Simulated Occupation 5 totals")+
+  theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Occupation 5")
+
+```
+
+**Figure A.33:** Real and simulated values of Occupation 5 employed individuals [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`Occ6`, y=Initial_Occ6)) + geom_point(aes(size=`Occ6`), color="blue", alpha = 0.2 )+
+  labs(x="Real Occupation 6 totals", y = "Simulated Occupation 6 totals")+
+  theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Occupation 6")
+
+```
+
+**Figure A.34:** Real and simulated values of Occupation 6 employed individuals [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`Occ7`, y=Initial_Occ7)) + geom_point(aes(size=`Occ7`), color="blue", alpha = 0.2 )+
+  labs(x="Real Occupation 7 totals", y = "Simulated Occupation 7 totals")+
+  theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Occupation 7")
+
+```
+
+**Figure A.35:** Real and simulated values of Occupation 7 employed individuals [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`Occ8`, y=Initial_Occ8)) + geom_point(aes(size=`Occ8`), color="blue", alpha = 0.2 )+
+  labs(x="Real Occupation 8 totals", y = "Simulated Occupation 8 totals")+
+  theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Occupation 8")
+
+```
+
+**Figure A.36:** Real and simulated values of Occupation 8 employed individuals [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`Occ9`, y=Initial_Occ9)) + geom_point(aes(size=`Occ9`), color="blue", alpha = 0.2 )+
+  labs(x="Real Occupation 9 totals", y = "Simulated Occupation 9 totals")+
+  theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Occupation 9")
+
+```
+
+**Figure A.37:** Real and simulated values of Occupation 9 employed individuals [Source: Self-composed]
+
+# Appendix III: External validation of spatial microdata
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`HW_1`, y=Initial_HW1)) + geom_point(aes(size=`HW_1`), color="blue", alpha = 0.2 )+
+  labs(x="Real Hours worked per week 1 totals", y = "Simulated Hours worked per week 1 totals")+
+  theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Hours worked \nper week 1")
+```
+
+**Figure A.38:** Real and simulated values of weekly working hours lvl1 [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`HW_2`, y=Initial_HW2)) + geom_point(aes(size=`HW_2`), color="blue", alpha = 0.2 )+
+  labs(x="Real Hours worked per week 2 totals", y = "Simulated Hours worked per week 2 totals")+
+  theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Hours worked \nper week 2")
+```
+
+**Figure A.39:** Real and simulated values of weekly working hours lvl2 [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`HW_3`, y=Initial_HW3)) + geom_point(aes(size=`HW_3`), color="blue", alpha = 0.2 )+
+  labs(x="Real Hours worked per week 3 totals", y = "Simulated Hours worked per week 3 totals")+
+  theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Hours worked \nper week 3")
+```
+
+**Figure A.40:** Real and simulated values of weekly working hours lvl3 [Source: Self-composed]
+
+```{r, echo=F}
+p=ggplot(ints_agg, aes(x=`HW_4`, y=Initial_HW4)) + geom_point(aes(size=`HW_4`), color="blue", alpha = 0.2 )+
+  labs(x="Real Hours worked per week 4 totals", y = "Simulated Hours worked per week 4 totals")+
+  theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Hours worked \nper week 4")
+```
+
+**Figure A.41:** Real and simulated values of weekly working hours lvl4 [Source: Self-composed]
+
+# Appendix IV: Internal validation-Fit statistics of OD microdata
+
+```{r, echo=F}
+
+ggplot(ints_OD_agg1, aes(x=Total, y=initial_Total)) + geom_point(aes(size=Total), color="blue", alpha = 0.2 )+
+  labs(x="Real OD totals", y = "Simulated OD totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+
+```
+
+**Figure A.42:** Real and simulated values of OD totals [Source: Self-composed]
+
+```{r, echo=F}
+
+ggplot(ints_OD_agg1, aes(x=Male, y=Initial_Male)) + geom_point(aes(size=Male), color="blue", alpha = 0.2 )+
+  labs(x="Real Male OD totals", y = "Simulated Male OD totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+
+```
+
+**Figure A.43:** Real and simulated values of employed males per OD [Source: Self-composed]
+
+```{r, echo=F}
+
+ggplot(ints_OD_agg1, aes(x=Female, y=Initial_Female)) + geom_point(aes(size=Female), color="blue", alpha = 0.2 )+
+  labs(x="Real Female OD totals", y = "Simulated Female OD totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+
+```
+
+**Figure A.44:** Real and simulated values of employed females per OD [Source: Self-composed]
+
+# Appendix V: Mode imputation algorithm
+
+# Appendix VI: Social grade-Annual income
+
+```{r, fig.height=3, echo=FALSE}
+img1=readPNG("pics/Chapter5/SG_AI.png")
+grid.raster(img1)
+
+```
+
+**Figure A.53:** Social Grade-Annual income [Source: [@national_readership_survey._social_2018]]
+
+# Appendix VII: Sociodemographic factors of employability
+
+In this section, further analysis performed on the key factors of employability for the adult population of Yorkshire is described. The aim of this analysis is to provide an initial point for any future simulation attempt of mobility patterns and how they might change with the aging of the current population. They also provide a deeper, although not concrete, understanding of the chances of employability, in regards to various sociodemographic characteristics.
+The data used for this analysis was the initial microdata, filtered to include only the adult individuals (over 16 years old) in Yorkshire. Logistic regression was used as a classification method, with the dependent variable being the “Employability” column, a binary variable in which 1 is defined for employed individuals with a certain economic activity, occupation and weekly hours of work and 0, otherwise. The independent variables selected for the Logistic Regression, were those that were not prerequisite of someone’s employability status, such as “Gender”, “Age” and “Ethnicity”, while others like “Occupation”, “Industry” and “Hours of work” were excluded. In total, the following 11 variables were used, defined in *Table A.1*:
+
+*	Family composition: 6 levels *(Reference level 1: Not in a family)*
+*	Population base: 2 levels *(Reference level 1: Resident in a communal establishment)*
+*	Gender: 2 levels *(Reference level 1: Male)*
+*	Age: 7 levels *(Reference level 2: 16-24 years old)*
+*	Marital status: 5 levels *(Reference level 1: Single)*
+*	Student: 2 levels *(Reference level 1: Yes)*
+*	Country of birth: 2 levels *(Reference level 1: UK)*
+*	Health: 5 levels *(Reference level 1: Very good health)*
+*	Ethnic group: 5 levels *(Reference level 1: White)*
+*	Religion: 2 levels *(Reference level 1: No religion)*
+*	Approximated Social grade: 4 levels *(Reference level 1: AB)*
+
+The results of this analysis, depicted in *Table A.1*, show interesting insights on the different factors of employability and their significance. For instance, females have a coefficient of -0.468 of being employed, meaning a 62.6% (e^-0.468^) less chances of employability compared to males, all else being equal. Furthermore, holding everything else at a fixed value, as age increases until the band of 45-54 the chances of employability also tend to increase, compared to the 16-24 age band. Specifically, individuals between 25-34, 35-44 and 45-54 have 62.3%, 95.4% and 99.9% more chances, respectively of being employed. In addition, individuals with very good health are more likely to be in employment than those with less good health levels, white people of white ethnicity tend to have better chances than others. At a first glance, the results show a level of discrimination among employers in the region, but a more thorough research needs to take place, in order for more concrete inferences to be derived.
