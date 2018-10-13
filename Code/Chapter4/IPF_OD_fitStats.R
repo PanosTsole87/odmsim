@@ -4,6 +4,7 @@ library(tmap)
 library(tmaptools)
 source('Code/Chapter4/functions.R')
 library(stplanr)
+library(ggplot2)
 
 ints_OD_agg1 = read.csv('Datasets/IPF/ints_OD_agg1.csv')
 
@@ -69,32 +70,32 @@ ggplot(ints_OD_agg1, aes(x=Female, y=Initial_Female)) + geom_point(aes(size=Fema
   geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
 
 # Plots for Age
-p=ggplot(ints_OD_agg1, aes(x=`16-24`, y=Initial_16_24)) + geom_point(aes(size=`16-24`), color="blue", alpha = 0.2 )+
+p=ggplot(ints_OD_agg1, aes(x=X16.24, y=Initial_16_24)) + geom_point(aes(size=X16.24), color="blue", alpha = 0.2 )+
   labs(x="Real 16-24 OD totals", y = "Simulated 16-24 OD totals")+theme(text = element_text(size=15))+
   geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
 p + labs(size= "16-24 \nyears old")
 
-p=ggplot(ints_OD_agg1, aes(x=`25-34`, y=Initial_25_34)) + geom_point(aes(size=`25-34`), color="blue", alpha = 0.2 )+
+p=ggplot(ints_OD_agg1, aes(x=X25.34, y=Initial_25_34)) + geom_point(aes(size=X25.34), color="blue", alpha = 0.2 )+
   labs(x="Real 25-34 OD totals", y = "Simulated 25-34 OD totals")+theme(text = element_text(size=15))+
   geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
 p + labs(size= "25-34 \nyears old")
 
-ggplot(ints_OD_agg1, aes(x=`35-44`, y=Initial_35_44)) + geom_point(aes(size=`35-44`), color="blue", alpha = 0.2 )+
+p = ggplot(ints_OD_agg1, aes(x=X35.44, y=Initial_35_44)) + geom_point(aes(size=X35.44), color="blue", alpha = 0.2 )+
   labs(x="Real 35-44 OD totals", y = "Simulated 35-44 OD totals")+theme(text = element_text(size=15))+
   geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
 p + labs(size= "35-44 \nyears old")
 
-p=ggplot(ints_OD_agg1, aes(x=`45-54`, y=Initial_45_54)) + geom_point(aes(size=`45-54`), color="blue", alpha = 0.2 )+
+p=ggplot(ints_OD_agg1, aes(x=X45.54, y=Initial_45_54)) + geom_point(aes(size=X45.54), color="blue", alpha = 0.2 )+
   labs(x="Real 45-54 OD totals", y = "Simulated 45-54 OD totals")+theme(text = element_text(size=15))+
   geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
 p + labs(size= "45-54 \nyears old")
 
-p=ggplot(ints_OD_agg1, aes(x=`55-64`, y=Initial_55_64)) + geom_point(aes(size=`55-64`), color="blue", alpha = 0.2 )+
+p=ggplot(ints_OD_agg1, aes(x=X55.64, y=Initial_55_64)) + geom_point(aes(size=X55.64), color="blue", alpha = 0.2 )+
   labs(x="Real 55-64 OD totals", y = "Simulated 55-64 OD totals")+theme(text = element_text(size=15))+
   geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
 p + labs(size= "55-64 \nyears old")
 
-p=ggplot(ints_OD_agg1, aes(x=`65-74`, y=Initial_65_74)) + geom_point(aes(size=`65-74`), color="blue", alpha = 0.2 )+
+p=ggplot(ints_OD_agg1, aes(x=X65.74, y=Initial_65_74)) + geom_point(aes(size=X65.74), color="blue", alpha = 0.2 )+
   labs(x="Real 65-74 OD totals", y = "Simulated 65-74 OD totals")+theme(text = element_text(size=15))+
   geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
 p + labs(size= "65-74 \nyears old")

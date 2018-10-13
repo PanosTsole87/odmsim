@@ -58,8 +58,7 @@ pb_download("Datasets/IPF/ints_OD_agg1.csv", repo= 'PanosTsole87/odmsim/', tag =
 pb_download("Datasets/IPF/ints_OD_SexAge_Mode.csv", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") #Integerised individuals with OD and Mode after 2nd IPF
 
 
-# List all existing files on piggyback
-pb_list()
+
 
 
 

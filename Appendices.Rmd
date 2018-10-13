@@ -20,6 +20,7 @@ library(knitr)
 library(mapview)
 library(png)
 library(grid)
+library(kableExtra)
 ```
 
 # Appendix I: Spatial distribution of constraint variables
@@ -433,6 +434,7 @@ p + labs(size= "Hours worked \nper week 4")
 # Appendix IV: Internal validation-Fit statistics of OD microdata
 
 ```{r, echo=F}
+ints_OD_agg1 = read.csv('Datasets/IPF/ints_OD_agg1.csv')
 
 ggplot(ints_OD_agg1, aes(x=Total, y=initial_Total)) + geom_point(aes(size=Total), color="blue", alpha = 0.2 )+
   labs(x="Real OD totals", y = "Simulated OD totals")+theme(text = element_text(size=15))+
@@ -462,13 +464,98 @@ ggplot(ints_OD_agg1, aes(x=Female, y=Initial_Female)) + geom_point(aes(size=Fema
 
 **Figure A.44:** Real and simulated values of employed females per OD [Source: Self-composed]
 
+```{r, echo=F}
+
+p=ggplot(ints_OD_agg1, aes(x=X16.24, y=Initial_16_24)) + geom_point(aes(size=X16.24), color="blue", alpha = 0.2 )+
+  labs(x="Real 16-24 OD totals", y = "Simulated 16-24 OD totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "16-24 \nyears old")
+
+```
+
+**Figure A.45:** Real and simulated values of employed individuals between 16-24 years old per OD [Source: Self-composed]
+
+```{r, echo=F}
+
+p=ggplot(ints_OD_agg1, aes(x=X25.34, y=Initial_25_34)) + geom_point(aes(size=X25.34), color="blue", alpha = 0.2 )+
+  labs(x="Real 25-34 OD totals", y = "Simulated 25-34 OD totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "25-34 \nyears old")
+
+```
+
+**Figure A.46:** Real and simulated values of employed individuals between 25-34 years old per OD [Source: Self-composed]
+
+```{r, echo=F}
+
+p=ggplot(ints_OD_agg1, aes(x=X35.44, y=Initial_35_44)) + geom_point(aes(size=X35.44), color="blue", alpha = 0.2 )+
+  labs(x="Real 35-44 OD totals", y = "Simulated 35-44 OD totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "35-44 \nyears old")
+
+```
+
+**Figure A.47:** Real and simulated values of employed individuals between 35-44 years old per OD [Source: Self-composed]
+
+```{r, echo=F}
+
+p=ggplot(ints_OD_agg1, aes(x=X45.54, y=Initial_45_54)) + geom_point(aes(size=X45.54), color="blue", alpha = 0.2 )+
+  labs(x="Real 45-54 OD totals", y = "Simulated 45-54 OD totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "45-54 \nyears old")
+
+```
+
+**Figure A.48:** Real and simulated values of employed individuals between 45-54 years old per OD [Source: Self-composed]
+
+```{r, echo=F}
+
+p=ggplot(ints_OD_agg1, aes(x=X55.64, y=Initial_55_64)) + geom_point(aes(size=X55.64), color="blue", alpha = 0.2 )+
+  labs(x="Real 55-64 OD totals", y = "Simulated 55-64 OD totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "55-64 \nyears old")
+
+```
+
+**Figure A.49:** Real and simulated values of employed individuals between 55-64 years old per OD [Source: Self-composed]
+
+```{r, echo=F}
+
+p=ggplot(ints_OD_agg1, aes(x=X65.74, y=Initial_65_74)) + geom_point(aes(size=X65.74), color="blue", alpha = 0.2 )+
+  labs(x="Real 65-74 OD totals", y = "Simulated 65-74 OD totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "65-74 \nyears old")
+
+```
+
+**Figure A.50:** Real and simulated values of employed individuals between 65-74 years old per OD [Source: Self-composed]
+
+```{r, echo=F}
+
+p=ggplot(ints_OD_agg1, aes(x=`Over75`, y=Initial_Over75)) + geom_point(aes(size=`Over75`), color="blue", alpha = 0.2 )+
+  labs(x="Real Over 75 OD totals", y = "Simulated Over 75 OD totals")+theme(text = element_text(size=15))+
+  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed", size=1.0)
+p + labs(size= "Over 75 \nyears old")
+
+```
+
+**Figure A.51:** Real and simulated values of employed individuals over 75 years old per OD [Source: Self-composed]
+
 # Appendix V: Mode imputation algorithm
+
+```{r, fig.height=3, echo=FALSE, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"'}
+img1=readPNG("pics/Appendices/mode_impute.png")
+grid.raster(img1)
+
+```
+
+**Figure A.52:** R-syntax of the Mode imputation algorithm [Source: Self-composed]
 
 # Appendix VI: Social grade-Annual income
 
-```{r, fig.height=3, echo=FALSE}
-img1=readPNG("pics/Chapter5/SG_AI.png")
-grid.raster(img1)
+```{r, fig.height=3, echo=FALSE, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"'}
+img2=readPNG("pics/Appendices/SG_AI.png")
+grid.raster(img2)
 
 ```
 
@@ -492,3 +579,19 @@ The data used for this analysis was the initial microdata, filtered to include o
 *	Approximated Social grade: 4 levels *(Reference level 1: AB)*
 
 The results of this analysis, depicted in *Table A.1*, show interesting insights on the different factors of employability and their significance. For instance, females have a coefficient of -0.468 of being employed, meaning a 62.6% (e^-0.468^) less chances of employability compared to males, all else being equal. Furthermore, holding everything else at a fixed value, as age increases until the band of 45-54 the chances of employability also tend to increase, compared to the 16-24 age band. Specifically, individuals between 25-34, 35-44 and 45-54 have 62.3%, 95.4% and 99.9% more chances, respectively of being employed. In addition, individuals with very good health are more likely to be in employment than those with less good health levels, white people of white ethnicity tend to have better chances than others. At a first glance, the results show a level of discrimination among employers in the region, but a more thorough research needs to take place, in order for more concrete inferences to be derived.
+
+```{r, echo=F, results=F, warning=F, message=F}
+source('Code/Appendices/logistic_regression.R')
+```
+
+**Table A.1:** Logistic regression results
+
+```{r, echo=F, message=F, warning=F}
+
+kable(Results_table)%>% 
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, position = "left") 
+```
+
+[Source: Self-composed]
+
+# List of References

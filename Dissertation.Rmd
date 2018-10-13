@@ -1040,7 +1040,7 @@ With the use of the OD microdata, researchers can aggregate certain individual v
 **Table 5.2:** Number of commuters affected based on their social grade
 
 ```{r, echo=F, warning=F, message=F, results=F}
-source('Code/Chapter4/case_study.R')
+source('Code/Chapter5/case_study.R')
 ```
 
 ```{r, echo=F}
@@ -1064,7 +1064,7 @@ p +geom_bar(stat = "identity", position='dodge')+
 In the following *Figures 5.2-5.9*, car and PT commuters with a Workplace in the Leeds city centre are mapped, based on their “Approximated Social Grade”. Contrary to their population distribution, there is a degree of difference between the spatial distribution of car and PT commuters. Nonetheless, there is not a significant difference in the spatial distribution of different social grade classes among only car or only PT commuters. As presented in *Table 5.3*, most car users are commuting to Leeds city centre from another zone within the same Local Authority, while most PT commuters have their origins in Bradford.
 
 ```{r, echo=F, fig.cap='**Figure 5.2:** Desire lines of car commuters with Social Grade A-B and a destination in the Leeds city centre [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
   tm_fill('LocalAuthority', legend.show = FALSE, palette = 'Blues')+
@@ -1079,7 +1079,7 @@ Yorkmap+od_map_SG_AB_car
 ```
 
 ```{r, echo=F, fig.cap='**Figure 5.3:** Desire lines of car commuters with Social Grade C1 and a destination in the Leeds city centre [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
   tm_fill('LocalAuthority', legend.show = FALSE, palette = 'Blues')+
@@ -1094,7 +1094,7 @@ Yorkmap+od_map_SG_C1_car
 ```
 
 ```{r, echo=F, fig.cap='**Figure 5.4:** Desire lines of car commuters with Social Grade C2 and a destination in the Leeds city centre [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
   tm_fill('LocalAuthority', legend.show = FALSE, palette = 'Blues')+
@@ -1110,7 +1110,7 @@ Yorkmap+od_map_SG_C2_car
 ```
 
 ```{r, echo=F, fig.cap='**Figure 5.5:** Desire lines of car commuters with Social Grade D-E and a destination in the Leeds city centre [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
   tm_fill('LocalAuthority', legend.show = FALSE, palette = 'Blues')+
@@ -1126,7 +1126,7 @@ Yorkmap+od_map_SG_DE_car
 ```
 
 ```{r, echo=F, fig.cap='**Figure 5.6:** Desire lines of PT commuters with Social Grade A-B and a destination in the Leeds city centre [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
   tm_fill('LocalAuthority', legend.show = FALSE, palette = 'Blues')+
@@ -1142,7 +1142,7 @@ Yorkmap+od_map_SG_AB_pt
 ```
 
 ```{r, echo=F, fig.cap='**Figure 5.7:** Desire lines of PT commuters with Social Grade C1 and a destination in the Leeds city centre [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
   tm_fill('LocalAuthority', legend.show = FALSE, palette = 'Blues')+
@@ -1158,7 +1158,7 @@ Yorkmap+od_map_SG_C1_pt
 ```
 
 ```{r, echo=F, fig.cap='**Figure 5.8:** Desire lines of PT commuters with Social Grade C2 and a destination in the Leeds city centre [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
   tm_fill('LocalAuthority', legend.show = FALSE, palette = 'Blues')+
@@ -1174,7 +1174,7 @@ Yorkmap+od_map_SG_C2_pt
 ```
 
 ```{r, echo=F, fig.cap='**Figure 5.9:** Desire lines of PT commuters with Social Grade D-E and a destination in the Leeds city centre [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
   tm_fill('LocalAuthority', legend.show = FALSE, palette = 'Blues')+
@@ -1192,7 +1192,7 @@ Yorkmap+od_map_SG_DE_pt
 **Table 5.3:** Origin zones with the most car or public transport commuters based on their social grade
 
 ```{r, echo=F, message=F, warning=F}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 colnm = c('Approximated Social Grade', 'MSOA zone with most car commuters (Local Authority)', 'MSOA zone with most PT commuters (Local Authority)')
 colnames(Origins_affected) = colnm
@@ -1209,7 +1209,7 @@ An analysis of the winners and losers from the specific scheme can also be condu
 **Table 5.4:** Zones with the largest percentage of affected population per Social Grade
 
 ```{r, echo=F, message=F, warning=F}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 colnm = c('Affected population category', 'MSOA zone (Local Authority)', 'Percentage of the zonal population (%)')
 colnames(Origins_affected_perc) = colnm
@@ -1223,7 +1223,7 @@ kable(Origins_affected_perc)%>%
 [Source: Self-composed]
 
 ```{r, echo=F, fig.cap='**Figure 5.10:** Affected car commuters (Losers) with Social Grade A-B [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 affected_car_AB = tm_shape(spatial_agg_car_commuters_SG_AB_Leeds_Origins)+
   tm_fill('Perc', palette = "Reds", title = 'Percentage of affected car commuters with Social Grade A-B')+
@@ -1244,7 +1244,7 @@ affected_car_AB+Leeds+Yorkmap
 ```
 
 ```{r, echo=F, fig.cap='**Figure 5.11:** Affected car commuters (Losers) with Social Grade C1 [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 affected_car_C1=tm_shape(spatial_agg_car_commuters_SG_C1_Leeds_Origins)+
   tm_fill('Perc', palette = "Reds", title = 'Percentage of affected car commuters with Social Grade C1')+
@@ -1265,7 +1265,7 @@ affected_car_C1+Leeds+Yorkmap
 ```
 
 ```{r, echo=F, fig.cap='**Figure 5.12:** Affected car commuters (Losers) with Social Grade C2 [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 affected_car_C2=tm_shape(spatial_agg_car_commuters_SG_C2_Leeds_Origins)+
   tm_fill('Perc', palette = "Reds", title = 'Percentage of affected car commuters with Social Grade C2')+
@@ -1287,7 +1287,7 @@ affected_car_C2+Leeds+Yorkmap
 ```
 
 ```{r, echo=F, fig.cap='**Figure 5.13:** Affected car commuters (Losers) with Social Grade D-E [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 affected_car_DE=tm_shape(spatial_agg_car_commuters_SG_DE_Leeds_Origins)+
   tm_fill('Perc', palette = "Reds", title = 'Percentage of affected car commuters with Social Grade D-E')+
@@ -1308,7 +1308,7 @@ affected_car_DE+Leeds+Yorkmap
 ```
 
 ```{r, echo=F, fig.cap='**Figure 5.14:** Affected PT commuters (Winners) with Social Grade A-B [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 affected_PT_AB=tm_shape(spatial_agg_PT_commuters_SG_AB_Leeds_Origins)+
   tm_fill('Perc', palette = "Greens", title = 'Percentage of affected PT commuters with Social Grade A-B')+
@@ -1330,7 +1330,7 @@ affected_PT_AB+Leeds+Yorkmap
 ```
 
 ```{r, echo=F, fig.cap='**Figure 5.15:** Affected PT commuters (Winners) with Social Grade C1 [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 affected_PT_C1=tm_shape(spatial_agg_PT_commuters_SG_C1_Leeds_Origins)+
   tm_fill('Perc', palette = "Greens", title = 'Percentage of affected PT commuters with Social Grade C1')+
@@ -1351,7 +1351,7 @@ affected_PT_C1+Leeds+Yorkmap
 ```
 
 ```{r, echo=F, fig.cap='**Figure 5.16:** Affected PT commuters (Winners) with Social Grade C2 [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 affected_PT_C2=tm_shape(spatial_agg_PT_commuters_SG_C2_Leeds_Origins)+
   tm_fill('Perc', palette = "Greens", title = 'Percentage of affected PT commuters with Social Grade C2')+
@@ -1372,7 +1372,7 @@ affected_PT_C2+Leeds+Yorkmap
 ```
 
 ```{r, echo=F, fig.cap='**Figure 5.17:** Affected PT commuters (Winners) with Social Grade D-E [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 affected_PT_DE=tm_shape(spatial_agg_PT_commuters_SG_DE_Leeds_Origins)+
   tm_fill('Perc', palette = "Greens", title = 'Percentage of affected PT commuters with Social Grade D-E')+
@@ -1399,7 +1399,7 @@ affected_PT_DE+Leeds+Yorkmap
 In addition to the aggregated analysis, the OD microdata also provides the ability for a similar type of analysis at a greater level of detail, e.g. for specific individuals. For that purpose, two randomly selected individuals, a car commuter (car passenger) and a public transport commuter (train user), are presented in *Figure 5.18*, along with some of their sociodemographic characteristics. **As it is depicted, the first individual is a middle-aged male car user (*“Gender” 1*) of age between 45-54 years old (*“Age” 5*), social grade of C2 (*“Approximated Social Grade” 3*) and he usually works more than 49 hours per week (*“Hours worked per week” 4*) at construction (*“Industry” 3*). On the other hand, the second commuter is a younger female train user (*“Gender” 2*) of age between 25-34 (*“Age” 3*), social grade of C1 (*“Approximated Social Grade” 2*) working around 31-48 hours per week (*“Hours worked per week” 3*) in activities related to human health or social work (*“Industry” 11*). Looking at the 2 sampled individuals, it is obvious that the proposed scheme would benefit a wealthy and young individual at the expense of a middle-aged labour worker with a possible low income. Specifically, the first individual with an estimated net annual income of £18000 (*see Figure A.53*) would have to pay an extra amount of £500 per year for 250 working days (*£2x250 working days-excluding weekends and bank holidays*), which is 2.8% of his total income and would need to double his transport budget from £2x250=£500 to £4x250=£1000 Similar insights at the individual level have the potential to provide a clear understanding of the repercussions of a certain policy and give the ability to prepare additional complementary measures to minimize the negative impacts**. *All of that is different now because the individuals are randomly sampled*.
 
 ```{r, echo=F, message=F, warning=F, fig.cap='**Figure 5.18:** Desire lines, travel mode and main sociodemographic characteristics for the two sampled individuals affected from the scheme [Source: Self-composed]'}
-# source('Code/Chapter4/case_study.R')
+# source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
   tm_fill('LocalAuthority', legend.show = FALSE, palette = 'Greys', alpha=0.4)+
