@@ -4,17 +4,17 @@ author: "PanosTsoleridis"
 date: "31 January 2018"
 output:
   html_document: 
-    toc: true # table of content true
-    toc_depth: 5  # upto three depths of headings (specified by #, ## and ###)
-    toc_float: true
-    number_sections: true  ## if you want number sections at each table header
+    toc: true              # table of content true
+    toc_depth: 5           # upto five depths of headings (specified by #, ##, ### etc.)
+    toc_float: true        # floating toc
+    number_sections: true  # if you want number sections at each table header
     theme: default 
   pdf_document: default
 bibliography: MScDissertation.bib
 csl: harvard-university-of-leeds.csl
 ---
 
-# Packages used
+## Packages used
 
 To reproduce this paper you need the following packages:
 
@@ -718,8 +718,14 @@ Regarding the important process of validation, internal validation was done firs
 
 **Table 4.3:** Fit statistics of Spatial Microdata
 
-```{r, echo=F, warning=F, message=F}
+
+```{r, echo=F, warning=F, message=F, results=F}
 source('Code/Chapter4/IPF_fitStats.R')
+
+```
+
+
+```{r, echo=F, warning=F, message=F}
 
 kable(IPF_fitStats_df)%>% 
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F, position = "left")
@@ -833,7 +839,7 @@ tm_shape(Simulated_Yorkshire)+
 
 The second phase, including the allocation of a Destination or Workplace to each individual, involved the use of IPF for each MSOA zone separately. The individuals of each Origin zone were allocated to a Destination, based on the commuters’ real Gender and Age in that specific Origin-Destination trip. Therefore, IPF was implemented 692 times and for that reason a *“for loop”* structure was used in the R programming language with the following syntax *(Figure 4.8)*. 
 
-```{r, fig.cap='**Figure 4.8:** R-syntax for the implementation of IPF per Origin zone [Source: Self-composed;  [@lovelace_spatial_2016]', fig.height=1.5, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
+```{r, fig.cap='**Figure 4.8:** R-syntax for the implementation of IPF per Origin zone [Source: Self-composed;  [@lovelace_spatial_2016]]', fig.height=1.5, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
 img48=readPNG("pics/Chapter4/ipf_OD.png")
 grid.raster(img48)
 
@@ -845,7 +851,7 @@ In the presented code snippet above, the individuals of each Origin zone and the
 
 The integerisation of the initial weight matrix was also implemented for each zone separately with the TRS algorithm, as described in *Paragraph 4.1.2*. In *Figure 4.9* the TRS syntax is presented, which is inside the for-loop of *Figure 4.8*.
 
-```{r, fig.cap='**Figure 4.9:** R-syntax for the implementation of TRS per Origin zone [Source: Self-composed;  [@lovelace_spatial_2016; @lovelace_truncate_2013]', fig.height=1, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
+```{r, fig.cap='**Figure 4.9:** R-syntax for the implementation of TRS per Origin zone [Source: Self-composed;  [@lovelace_spatial_2016; @lovelace_truncate_2013]]', fig.height=1, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
 img49=readPNG("pics/Chapter4/trs_OD.png")
 grid.raster(img49)
 
