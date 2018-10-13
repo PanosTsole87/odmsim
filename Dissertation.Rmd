@@ -21,7 +21,7 @@ To reproduce this paper you need the following packages:
 ```{r}
 pkgs = c(
   "ggpubr",      # to create pie charts
-  "kableExtra"
+  "kableExtra"  # to further manipulate tables
 )
 to_install = !pkgs %in% installed.packages()
 if(any(to_install)) {

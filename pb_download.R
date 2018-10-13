@@ -27,6 +27,8 @@ pb_download("Datasets/Microdata/2011CensusMicrodataTeachingFile.csv", repo= 'Pan
 
 # Sociodemographic files
 pb_download("Datasets/Sociodemographic/Data_AGE_ECOACT_OCCUP_SEX_UNIT.csv", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") #Initial Age-Sex Census file
+pb_download("Datasets/Sociodemographic/Data_AGE_ECOACT_HRSWRK_OCCUP_UNIT.csv", repo= 'PanosTsole87/odmsim/' , tag = "v1.0.0") #Initial Age-Sex Census file
+
 pb_download("Datasets/Sociodemographic/HoursWorked.csv", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") #Initial Hours of Work Census file
 pb_download("Datasets/Sociodemographic/Occupation.csv", repo= 'PanosTsole87/odmsim/', tag = "v1.0.0") #Initial Occupation Census file
 

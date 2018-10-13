@@ -7,13 +7,9 @@ ints_df = read.csv('Datasets/IPF/ints_df.csv')
 ints_agg = read.csv('Datasets/IPF/ints_agg.csv')
 cons = read.csv('Datasets/Sociodemographic/cons.csv')
 
-nrow(ints_df)
-nrow(Yorkshire)
-u = unique(ints_df$zone)
-length(u)
-summary(ints_df$Hours.worked.per.week)
 
 source('Code/Chapter3/DataPreparation_Census.R') 
+source('Code/Chapter3/DataPreparation_Boundaries.R')
 source('Code/Chapter3/HoursWorked_Occupation.R') 
 
 
