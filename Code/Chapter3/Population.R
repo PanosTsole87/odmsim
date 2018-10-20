@@ -1,4 +1,4 @@
-library(reshape2)
+# library(reshape2)
 
 AgeEcoOccupSex = read.csv('Datasets/Sociodemographic/AgeEcoOccupSex.csv')
 ############### Sociodemographic datasets Gender-Age ################################################
@@ -17,7 +17,7 @@ Commuting_sexage_totals_ALL = data.frame(Age = c('Age.16_24', 'Age.25_34', 'Age.
                                      Male = c(sum(Employed_population$`Male16-24`), sum(Employed_population$`Male25-34`), sum(Employed_population$`Male35-44`),
                                               sum(Employed_population$`Male45-54`), sum(Employed_population$`Male55-64`), sum(Employed_population$`Male65-74`), sum(Employed_population$Male75over)))
 
-library(reshape2)
+
 Commuting_sexage_totals_ALL2 <- melt(Commuting_sexage_totals_ALL, id.vars='Age')
 head(Commuting_sexage_totals_ALL2)
 

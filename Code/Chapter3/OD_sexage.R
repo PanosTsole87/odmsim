@@ -1,11 +1,10 @@
-library(readxl)
-library(sf)
-library(ukboundaries)
-library(raster)
-library(ggplot2)
-library(dplyr)
-install.packages('ggpubr')
-library(ggpubr)
+# library(readxl)
+# library(sf)
+# library(ukboundaries)
+# library(raster)
+# library(ggplot2)
+# library(dplyr)
+# library(ggpubr)
 ################################ OD Sex ############################################
 # Load and filter OD file 1 for sex
 ODsex = read.csv('Datasets/OD/wu01ew_v2.csv', skip = 0)

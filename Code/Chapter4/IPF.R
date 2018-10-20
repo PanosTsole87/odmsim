@@ -1,6 +1,6 @@
 # Load libraries
-library(ipfp)
-library(dplyr)
+# library(ipfp)
+# library(dplyr)
 source('Code/Chapter4/functions.R')
 
 ##### Prepare the data for IPF ###################################################

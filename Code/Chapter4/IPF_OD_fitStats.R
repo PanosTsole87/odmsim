@@ -1,10 +1,11 @@
 # Load libraries
-library(dplyr)
-library(tmap)
-library(tmaptools)
+# library(dplyr)
+# library(tmap)
+# library(tmaptools)
+# library(stplanr)
+# library(ggplot2)
+
 source('Code/Chapter4/functions.R')
-library(stplanr)
-library(ggplot2)
 
 ints_OD_agg1 = read.csv('Datasets/IPF/ints_OD_agg1.csv')
 

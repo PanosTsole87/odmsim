@@ -19,23 +19,42 @@ csl: harvard-university-of-leeds.csl
 To reproduce this paper you need the following packages:
 
 ```{r}
-pkgs = c(
+
+pkgs <- c(
   "ggpubr",      # to create pie charts
-  "kableExtra"  # to further manipulate tables
-)
-to_install = !pkgs %in% installed.packages()
-if(any(to_install)) {
-  install.packages(pkgs[to_install])
-}
+  "kableExtra",  # to further manipulate tables
+  "sf",          # to work with Simple Features spatial objects
+  "tmap",        # to create maps
+  "tmaptools",   # further mapping tools
+  "dplyr",       # because there is nothing like it!
+  "ggplot2",     # because there is nothing like it pt2!
+  "reshape",     # to exapand a df and create histograms
+  "gridExtra",   # to arrange two plots next to each other on the same row
+  "stplanr",     # to perform transport-related operations, eg. OD creatio between two centroids
+  "rgdal", 
+  "ggpubr",      # to create pie charts
+  "tidyverse",   # to include other useful packages like tibble
+  "ipfp",        # to perform IPF
+  "png",         # to insert png in Rmarkdown
+  "grid",         
+  "knitr"        
+  )
+
+# Check which of the required packages are already present in your installed packages
+to_install <- pkgs[!(pkgs %in% installed.packages()[,"Package"])]
+
+# If there are required packages NOT yet installed -> Then install them
+if(length(to_install)){
+  install.packages(to_install)
+} 
+
+# Load all the required packages
+eval(parse(text=paste("library(",pkgs,")")))
 ```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(png)
-library(grid)
-library(knitr)
-library(kableExtra)
-library(ggplot2)
+
 ```
 
 
@@ -782,7 +801,7 @@ Yorkmap = tm_shape(Yorkshire1)+
 
 
 sampled_map=tm_shape(spatial_ind_sample_Origin)+
-  tm_fill('Sex', c('blue', 'red'), alpha=1, title = 'Gender of sampled individuals', labels = c('Male', 'Female'))+
+  tm_fill('Sex', palette = c('blue', 'red'), alpha=1, title = 'Gender of sampled individuals', labels = c('Male', 'Female'))+
   tm_borders(alpha=.5)+
   tm_compass(position = c('left', 'top'))+
   tm_scale_bar()
@@ -1003,7 +1022,7 @@ sampled_destination_zones_map = tm_shape(sampled_destination_zones)+
   tm_scale_bar()
 
 sampled_ind_map=tm_shape(spatial_ind_sample_Mode)+
-  tm_lines(col='Mode', palette=c('red', 'blue', 'cyan'), scale=3, title.col  = 'Mode of travel of sampled individuals')
+  tm_lines(col='Mode_char', palette=c('red', 'blue', 'cyan'), scale=3, title.col  = 'Mode of travel of sampled individuals')
 
 Yorkmap+origin_zones+sampled_destination_zones_map+sampled_ind_map
 ```
@@ -1423,7 +1442,7 @@ sampled_destination_zones_map = tm_shape(sampled_destination_zones)+
   tm_scale_bar()
 
 sampled_map=tm_shape(spatial_random_individuals)+
-  tm_lines(col='Mode',palette=c('red', 'cyan'), scale=3, title.col  = 'Mode of travel of sampled individuals', labels = c('Train', 'Car Passenger'))
+  tm_lines(col='Mode_char',palette=c('red', 'cyan'), scale=3, title.col  = 'Mode of travel of sampled individuals')
 
 Yorkmap+origin_zones+sampled_destination_zones_map+sampled_map
 

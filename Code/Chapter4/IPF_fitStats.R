@@ -1,6 +1,6 @@
 # Load libraries and functions
-library(dplyr)
-library(ggplot2)
+# library(dplyr)
+# library(ggplot2)
 source('Code/Chapter4/functions.R') #load the tae function
 
 ints_df = read.csv('Datasets/IPF/ints_df.csv')

@@ -1,10 +1,10 @@
-library(dplyr)
-library(sf)
-library(tmap)
-library(stplanr)
-#tmap_mode("view")
-library(ggplot2)
-library(reshape2)
+# library(dplyr)
+# library(sf)
+# library(tmap)
+# library(stplanr)
+# #tmap_mode("view")
+# library(ggplot2)
+# library(reshape2)
 
 source('Code/Chapter3/OD_pairs.R')
 
@@ -14,6 +14,18 @@ ints_OD_SexAge_Mode = read.csv('Datasets/IPF/ints_OD_SexAge_Mode.csv')
 #str(ints_OD_SexAge_Mode)
 ints_OD_SexAge_Mode$Destination = as.character(ints_OD_SexAge_Mode$Destination)
 
+# Check structure of ints_OD_SexAge_Mode to see that Mode is simply an integer column and not a factor
+str(ints_OD_SexAge_Mode)
+
+# Change Mode to factor in a new column
+ints_OD_SexAge_Mode$Mode_factor = as.factor(ints_OD_SexAge_Mode$Mode)
+
+# Define factor levels for the Mode column
+levels(ints_OD_SexAge_Mode$Mode_factor) = c('WorkFromHome', 'MetroTram', 'Train', 'Bus', 'Taxi', 'Motorcycle', 'CarDriver', 'CarPassenger', 'Bicycle', 'Pedestrian', 'Other')
+
+ints_OD_SexAge_Mode$Mode_char = as.character(ints_OD_SexAge_Mode$Mode_factor)
+
+head(ints_OD_SexAge_Mode)
 
 ##### Aggregate-level Analysis #################################################################
 
@@ -580,15 +592,25 @@ Origins_affected_perc = data.frame(cbind(Affected_population_category, MSOA_zone
 # 2 Randomly selected individuals
 all_car_commuters_Leeds = rbind(car_commuters_SG_AB_Leeds, car_commuters_SG_C1_Leeds, car_commuters_SG_C2_Leeds, car_commuters_SG_DE_Leeds)
 
+str(all_car_commuters_Leeds)
+
+
 all_PT_commuters_Leeds = rbind(PT_commuters_SG_AB_Leeds, PT_commuters_SG_C1_Leeds, PT_commuters_SG_C2_Leeds, PT_commuters_SG_DE_Leeds)
+
+str(all_PT_commuters_Leeds)
+
 
 # Random selection of 1 individual from each dataset
 random_individuals = rbind(sample_n(all_car_commuters_Leeds, 1), sample_n(all_PT_commuters_Leeds, 1))
+
+str(random_individuals)
+
 
 # Subset desire lines to include the 2 OD of the sampled inds
 desire_lines_intra_nonendo_sampled_inds_casestudy = desire_lines_intra_nonendo[desire_lines_intra_nonendo$ResWork %in% random_individuals$OD, ]
 
 spatial_random_individuals = left_join(desire_lines_intra_nonendo_sampled_inds_casestudy, random_individuals, by=c('ResWork'='OD'))
+
 
 # Map the 2 sampled individuals
 Yorkmap = tm_shape(Yorkshire1)+
@@ -610,7 +632,9 @@ sampled_destination_zones_map = tm_shape(sampled_destination_zones)+
   tm_scale_bar()
 
 sampled_map=tm_shape(spatial_random_individuals)+
-  tm_lines(col='Mode',palette=c('red', 'cyan'), scale=3, title.col  = 'Mode of travel of sampled individuals', labels = c('Train', 'Car Passenger'))
+  tm_lines(col='Mode_char',palette=c('red', 'cyan'), scale=3, title.col  = 'Mode of travel of sampled individuals')
+
+
 
 Yorkmap+origin_zones+sampled_destination_zones_map+sampled_map
 

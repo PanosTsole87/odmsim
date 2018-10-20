@@ -14,27 +14,41 @@ bibliography: MScDissertation.bib
 csl: harvard-university-of-leeds.csl
 ---
 
-# Packages used
+## Packages used
 
 To reproduce this paper you need the following packages:
 
 ```{r}
-pkgs = c(
-  "pscl"      # to find R-squared in Logistic Regression
-)
 
-to_install = !pkgs %in% installed.packages()
-if(any(to_install)) {
-  install.packages(pkgs[to_install])
-}
+pkgs <- c(
+  "pscl",      # to compute R-squared
+  "sf",          # to work with Simple Features spatial objects
+  "tmap",        # to create maps
+  "tmaptools",   # further mapping tools
+  "dplyr",       # because there is nothing like it!
+  "ggplot2",     # because there is nothing like it pt2!
+  "mapview",     # to create interactive maps
+  "kableExtra",  # to further manipulate tables
+  "png",         # to insert png in Rmarkdown
+  "grid",         
+  "knitr" 
+  )
+
+# Check which of the required packages are already present in your installed packages
+to_install <- pkgs[!(pkgs %in% installed.packages()[,"Package"])]
+
+# If there are required packages NOT yet installed -> Then install them
+if(length(to_install)){
+  install.packages(to_install)
+} 
+
+# Load all the required packages
+eval(parse(text=paste("library(",pkgs,")")))
 ```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(knitr)
-library(mapview)
-library(png)
-library(grid)
+
 library(kableExtra)
 ```
 

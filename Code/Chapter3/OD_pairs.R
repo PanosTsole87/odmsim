@@ -1,8 +1,8 @@
-library(dplyr)
-library(stplanr)
-library(sf)
-library(tmap)
-library(rgdal)
+# library(dplyr)
+# library(stplanr)
+# library(sf)
+# library(tmap)
+# library(rgdal)
 #tmap_mode("view")
 
 #source('Code/Chapter3/DataPreparation_Boundaries.R')

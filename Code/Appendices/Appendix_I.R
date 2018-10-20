@@ -1,8 +1,8 @@
-library(tmap)
-library(tmaptools)
-library(ggplot2)
-library(dplyr)
-library(sf)
+# library(tmap)
+# library(tmaptools)
+# library(ggplot2)
+# library(dplyr)
+# library(sf)
 #tmap_mode("view")
 
 

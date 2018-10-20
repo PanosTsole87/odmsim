@@ -1,7 +1,7 @@
 # Load the necessary libraries
-library(dplyr)
-library(ggplot2)
-library(reshape2)
+# library(dplyr)
+# library(ggplot2)
+# library(reshape2)
 
 ################## Microdata loading and cleaning ############################################################
 #Read the microdata csv and skip the first row

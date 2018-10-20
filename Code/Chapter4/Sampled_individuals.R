@@ -1,15 +1,15 @@
 # Load libraries
-library(dplyr)
-library(sf)
-library(tmap)
-library(tmaptools)
+# library(dplyr)
+# library(sf)
+# library(tmap)
+# library(tmaptools)
 
 ##### Sampled Individuals after the 1st-2nd step COMBINED #################################
 
 source('Code/Chapter3/DataPreparation_Microdata.R')
 
 ints_OD_df = read.csv('Datasets/IPF/ints_OD_df.csv')
-
+ints_df = read.csv('Datasets/IPF/ints_df.csv')
 
 # Sample of individuals
 # Create a sample of inds with Origins and show their Destinations
@@ -75,9 +75,11 @@ Yorkmap = tm_shape(Yorkshire1)+
   tm_fill('LocalAuthority', legend.show = FALSE, col='grey', alpha=0.4)+
   tm_borders(alpha=.5)
 
+#str(spatial_ind_sample_Origin)
+spatial_ind_sample_Origin$Sex = as.character(spatial_ind_sample_Origin$Sex)
 
 sampled_map=tm_shape(spatial_ind_sample_Origin)+
-  tm_fill('Sex', c('blue', 'red'), alpha=1, title = 'Gender of sampled individuals', labels = c('Male', 'Female'))+
+  tm_fill('Sex', palette = c('blue', 'red'), alpha=1, title = 'Gender of sampled individuals', labels = c('Male', 'Female'))+
   tm_borders(alpha=.5)+
   tm_compass(position = c('left', 'top'))+
   tm_scale_bar()
@@ -122,6 +124,9 @@ sampled_destination_zones_map = tm_shape(sampled_destination_zones)+
   tm_borders(alpha=.5)+
   tm_scale_bar()
 
+#str(spatial_ind_sample_destination)
+spatial_ind_sample_destination$Sex = as.character(spatial_ind_sample_destination$Sex)
+
 sampled_map=tm_shape(spatial_ind_sample_destination)+
   tm_lines(col="Sex", palette=c('blue', 'red'), scale=3, title.col  = 'Gender of sampled individuals', labels = c('Male', 'Female'))
 
@@ -140,6 +145,7 @@ Yorkmap+origin_zones+sampled_destination_zones_map+sampled_map
 ints_OD_SexAge_Mode = read.csv('Datasets/IPF/ints_OD_SexAge_Mode.csv')
 #str(ints_OD_SexAge_Mode)
 ints_OD_SexAge_Mode$Mode = as.factor(ints_OD_SexAge_Mode$Mode)
+
 levels(ints_OD_SexAge_Mode$Mode) = c('WorkFromHome', 'MetroTram', 'Train', 'Bus', 'Taxi', 'Motorcycle', 'CarDriver', 'CarPassenger', 'Bicycle', 'Pedestrian', 'Other')
 
 ind_sample_Mode = ints_OD_SexAge_Mode[ints_OD_SexAge_Mode$Person.ID %in% ind_sample_Destination_final$Person.ID, ]
@@ -172,17 +178,13 @@ sampled_destination_zones_map = tm_shape(sampled_destination_zones)+
   tm_borders(alpha=.5)+
   tm_scale_bar()
 
-# THE FOLLOWING GIVES AN ERROR WHEN PLOTTING
-# modes = c('WorkFromHome', 'MetroTram', 'Train', 'Bus', 'Taxi', 'Motorcycle', 'CarDriver', 'CarPassenger', 'Bicycle', 'Pedestrian', 'Other')
-# 
-# modes_sel = modes[modes %in% spatial_ind_sample_Mode$Mode]
-# class(modes_sel)
-# 
-# sampled_ind_map=tm_shape(spatial_ind_sample_Mode)+
-#   tm_lines(col='Mode', palette=c('red', 'blue', 'cyan'), scale=3, title.col  = 'Mode of travel of sampled individuals', labels = modes_sel)
 
-# The following works after removing  - But now the map shows all available modes even if the individuals are only using a subset of them
+
+spatial_ind_sample_Mode$Mode_char = as.character(spatial_ind_sample_Mode$Mode)
+
 sampled_ind_map=tm_shape(spatial_ind_sample_Mode)+
-  tm_lines(col='Mode', palette=c('red', 'blue', 'cyan'), scale=3, title.col  = 'Mode of travel of sampled individuals')
+  tm_lines(col='Mode_char', palette=c('red', 'blue', 'cyan'), scale=3, title.col  = 'Mode of travel of sampled individuals')
+
+
 
 Yorkmap+origin_zones+sampled_destination_zones_map+sampled_ind_map
