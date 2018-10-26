@@ -1,7 +1,7 @@
 ---
 title: "Appendices"
 author: "PanosTsoleridis"
-date: "12 October 2018"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
   html_document:
     html_document:

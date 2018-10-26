@@ -1,14 +1,14 @@
 ---
 title: "Extending Spatial Microsimulation to allocate individuals to Origin-Destination pairs"
 author: "PanosTsoleridis"
-date: "31 January 2018"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  html_document: 
+  html_document:
     toc: true              # table of content true
     toc_depth: 5           # upto five depths of headings (specified by #, ##, ### etc.)
     toc_float: true        # floating toc
     number_sections: true  # if you want number sections at each table header
-    theme: default 
+    theme: default
   pdf_document: default
 bibliography: MScDissertation.bib
 csl: harvard-university-of-leeds.csl
@@ -18,7 +18,7 @@ csl: harvard-university-of-leeds.csl
 
 To reproduce this paper you need the following packages:
 
-```{r}
+```{r, warning=F, message=F}
 
 pkgs <- c(
   "ggpubr",      # to create pie charts
@@ -776,7 +776,7 @@ After the successful allocation of individuals to the MSOA zones, a new column i
 
 **Table 4.5:** Spatial microdata for the first 5 individuals
 
-```{r, echo=F, message=F, warning=F}
+```{r, echo=F, message=F, warning=F, results=F}
 source('Code/Chapter4/Sampled_individuals.R')
 
 ```
@@ -1421,7 +1421,7 @@ affected_PT_DE+Leeds+Yorkmap
 
 ## Individual-level analysis
 
-In addition to the aggregated analysis, the OD microdata also provides the ability for a similar type of analysis at a greater level of detail, e.g. for specific individuals. For that purpose, two randomly selected individuals, a car commuter (car passenger) and a public transport commuter (train user), are presented in *Figure 5.18*, along with some of their sociodemographic characteristics. **As it is depicted, the first individual is a middle-aged male car user (*“Gender” 1*) of age between 45-54 years old (*“Age” 5*), social grade of C2 (*“Approximated Social Grade” 3*) and he usually works more than 49 hours per week (*“Hours worked per week” 4*) at construction (*“Industry” 3*). On the other hand, the second commuter is a younger female train user (*“Gender” 2*) of age between 25-34 (*“Age” 3*), social grade of C1 (*“Approximated Social Grade” 2*) working around 31-48 hours per week (*“Hours worked per week” 3*) in activities related to human health or social work (*“Industry” 11*). Looking at the 2 sampled individuals, it is obvious that the proposed scheme would benefit a wealthy and young individual at the expense of a middle-aged labour worker with a possible low income. Specifically, the first individual with an estimated net annual income of £18000 (*see Figure A.53*) would have to pay an extra amount of £500 per year for 250 working days (*£2x250 working days-excluding weekends and bank holidays*), which is 2.8% of his total income and would need to double his transport budget from £2x250=£500 to £4x250=£1000 Similar insights at the individual level have the potential to provide a clear understanding of the repercussions of a certain policy and give the ability to prepare additional complementary measures to minimize the negative impacts**. *All of that is different now because the individuals are randomly sampled*.
+In addition to the aggregated analysis, the OD microdata also provides the ability for a similar type of analysis at a greater level of detail, e.g. for specific individuals. For that purpose, two randomly selected individuals, a car commuter (car passenger) and a public transport commuter (train user), are presented in *Figure 5.18*, along with some of their sociodemographic characteristics. As it is depicted, the first individual is a young female car user (*“Gender” 2*) of age between 25-34 years old (*“Age” 3*), social grade of D or E (*“Approximated Social Grade” 4*) and she usually between 31 to 48 hours per week (*“Hours worked per week” 3*) at retail (*“Industry” 4*). On the other hand, the second commuter is an older female bus user (*“Gender” 2*) of age between 45-54 (*“Age” 5*), social grade of A or B (*“Approximated Social Grade” 1*) working part-time of around 16-30 hours per week (*“Hours worked per week” 2*) in activities related to education (*“Industry” 10*). Looking at the 2 sampled individuals, it is obvious that the proposed scheme would benefit a wealthy individual at the expense of a younger one with a possible low income. Specifically, the first individual with an estimated net annual income of £10000 (*see Figure A.53*) would have to pay an extra amount of £500 per year for 250 working days (*£2x250 working days-excluding weekends and bank holidays*), which is 2.8% of her total income and would need to double her transport budget from £2x250=£500 to £4x250=£1000. Similar insights at the individual level have the potential to provide a clear understanding of the repercussions of a certain policy and give the ability to prepare additional complementary measures to minimize the negative impacts.
 
 ```{r, echo=F, message=F, warning=F, fig.cap='**Figure 5.18:** Desire lines, travel mode and main sociodemographic characteristics for the two sampled individuals affected from the scheme [Source: Self-composed]'}
 # source('Code/Chapter5/case_study.R')

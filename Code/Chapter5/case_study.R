@@ -601,6 +601,7 @@ str(all_PT_commuters_Leeds)
 
 
 # Random selection of 1 individual from each dataset
+set.seed(27)
 random_individuals = rbind(sample_n(all_car_commuters_Leeds, 1), sample_n(all_PT_commuters_Leeds, 1))
 
 str(random_individuals)

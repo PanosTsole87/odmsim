@@ -8,6 +8,8 @@
 
 source('Code/Chapter3/DataPreparation_Microdata.R')
 
+source('Code/Chapter3/OD_pairs.R')
+
 ints_OD_df = read.csv('Datasets/IPF/ints_OD_df.csv')
 ints_df = read.csv('Datasets/IPF/ints_df.csv')
 
