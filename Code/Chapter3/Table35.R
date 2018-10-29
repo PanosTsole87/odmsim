@@ -5,7 +5,7 @@
 ###########################################################################
 # Load and filter OD file 3
 ODmode = read.csv('Datasets/OD/wu03ew_v2.csv', skip = 0)
-OD_sexage = read.csv('Datasets/OD/OD_sexage.csv', skip = 0)
+OD_sexage = read.csv('Datasets/OD/OD_SexAge.csv', skip = 0)
 
 ODmode = ODmode %>% 
   filter(Area.of.residence %in% OD_sexage$Residence)

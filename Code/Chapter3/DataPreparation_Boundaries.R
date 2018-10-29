@@ -1,6 +1,6 @@
-# library(sf)
-# library(tmap)
-# library(tmaptools)
+library(sf)
+library(tmap)
+library(tmaptools)
 source('Code/Chapter3/DataPreparation_Census.R')
 ######################## Load UK (England+Wales+Scotland+N.Ireland) MSOA boundaries #########################################
 UK_boundaries = st_read('Datasets/Boundaries/UK_2011_Census_Boundaries__MSOA/UK_2011_Census_Boundaries__MSOA.shp')

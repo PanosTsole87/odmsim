@@ -50,6 +50,8 @@ if(length(to_install)){
 
 # Load all the required packages
 eval(parse(text=paste("library(",pkgs,")")))
+
+tmap_mode("view") # To have interactive maps
 ```
 
 ```{r setup, include=FALSE}
@@ -129,13 +131,13 @@ Spatial microsimulation in transport studies is mainly used to simulate a synthe
 individuals at the micro-level for later use in activity-based modelling [@philips_fine-grained_2017]. 
 A detailed explanation of activity-chain scheduling can be found at Barthelemy and Toint [-@barthelemy_stochastic_2015], 
 where the processes behind VirtualBelgium model are described.
- 
 
-```{r, fig.cap='**Figure 2.1:** Areas of microsimualtion studies during the period 1967-2003   [Source: [@ballas_spatial_2009]]', fig.height=3, echo=FALSE}
+```{r, fig.height=3, echo=FALSE}
 img21=readPNG("pics/Chapter2/areas-of-microsimulation.png")
 grid.raster(img21)
 ```
 
+**Figure 2.1:** Areas of microsimualtion studies during the period 1967-2003   [Source: [@ballas_spatial_2009]]
 
 Spatial microsimulation is a subset of microsimulation as it adds a spatial context in the 
 analysis of individual interactions at the micro-level [@lovelace_spatial_2016]. Specifically, Lovelace and Durmont [-@lovelace_spatial_2016, p.31] define spatial microsimulation as “The creation, analysis and 
@@ -181,15 +183,14 @@ data to the available aggregate constraints and the *allocation* of individuals 
 disaggregated category [@muller_population_2010]. Due to the general lack of available and 
 accessible data at the desired disaggregated level, population synthesis is regarded as a 
 necessary first step for the subsequent microsimulation analysis [@hafezi_synthesizing_2014]. 
- 
 
-
-```{r, fig.cap='**Figure 2.2:** Schematic diagram of population synthesis using spatial microsimulation  [Source: [@crooks_agent-based_2017]]', fig.height=3, echo=FALSE}
+```{r, fig.height=3, echo=FALSE}
 img22=readPNG("pics/Chapter2/population synthesis.png")
 grid.raster(img22)
 
 ```
 
+**Figure 2.2:** Schematic diagram of population synthesis using spatial microsimulation  [Source: [@crooks_agent-based_2017]]
 
 Population synthesis could be processed through many different methods, which could be broadly categorised into synthetic reconstruction and reweighting methods. The latter could be further categorised into deterministic and stochastic weighting algorithms [@lovelace_spatial_2016]. 
 Iterative Proportional Fitting (IPF) is one of the most popular methods for population synthesis 
@@ -312,11 +313,13 @@ For the successful allocation of individuals to OD pairs, several necessary step
 
 In the last phase, after the successful allocation of individuals to OD pairs, a preferred method of commuting (travel mode) is assigned to each individual using random sampling (Monte-Carlo). At this point, it should be noted, that the results of the mode imputation are derived after only one simulation run and they do not represent concrete outputs. The purpose of the last phase is mainly to illustrate the potential of an enriched Origin-Destination microdata and to aid the case study presented in *Chapter 5*, although it is not required to achieve the project’s main purpose. Researchers interested in allocating the real mode preference to individuals can find the “Preferred Mode” variable in a safeguarded version of the microdata used. Nonetheless, in order to ensure the reproducibility of the current project, it was decided to use only open-access datasets. The described methodology, summarised in *Figure 3.1*, is performed only for the population that was in employment during the week of the Census. The R programming language was used for the methodology’s practical implementation, as well as for the creation of figures, graphs and maps.
 
-```{r, fig.cap='**Figure 3.1:** Methodology for the allocation of individuals to OD pairs [Source: Self-composed]', fig.height=3, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
+```{r, fig.height=3, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
 img31=readPNG("pics/Chapter3/Methodology.png")
 grid.raster(img31)
 
 ```
+
+**Figure 3.1:** Methodology for the allocation of individuals to OD pairs [Source: Self-composed]
 
 ### Iterative Proportional Fitting
 
@@ -343,15 +346,20 @@ For the practical implementation of the methodology, several datasets were obtai
 The necessary shapefile including all the MSOA zone boundaries of England and Wales, as well as the country boundaries of Scotland and Northern Ireland was extracted from the ONS. Specifically for the study area, Yorkshire and the Humber consists of 3 counties, North, South and West Yorkshire, 21 Local Authorities and 692 MSOA zones (*Figure 3.2*) (*see Code/Chapter3/DataPreparation_Boundaries.R*).
 
 
-```{r, fig.cap='**Figure 3.2:** Map of Yorkshire and the Humber region [Source: Self-composed]', fig.height=5, echo=FALSE, results=FALSE, warning=FALSE, message=FALSE}
+```{r, echo=FALSE, results=FALSE, warning=FALSE, message=FALSE}
 source('Code/Chapter3/DataPreparation_Boundaries.R')
 
+```
+
+```{r, echo=F, message=F, warning=F}
 Yorkmap = tm_shape(Yorkshire1)+
   tm_polygons('LocalAuthority', title = 'Local Authority')+
   tm_borders(alpha=.5)+tm_compass(position = c('right', 'top'))+
   tm_scale_bar()
 Yorkmap
 ```
+
+**Figure 3.2:** Map of Yorkshire and the Humber region [Source: Self-composed]
 
 ### Microdata
 
@@ -463,7 +471,7 @@ kable(con_age_sex_sel) %>%
 [Source: [@office_for_national_statistics_2011_2016]]
 
 
-```{r, echo=FALSE, fig.hold='hold', message=F, fig.align='center', fig.width=50, fig.height=20}
+```{r, echo=FALSE, message=F, warning=F, fig.hold='hold', fig.align='center', fig.width=50, fig.height=20}
 source('Code/Chapter3/Figure33.R')
 
 ```
@@ -499,12 +507,13 @@ The most important issue with the three OD datasets was the different age bands 
 The initial OD per Age dataset included 6 age bands, 16-24, 25-34, 35-49, 50-64, 65-74 and Over 75 years old. On the other hand, the age bands in the previously imported datasets, microdata and sociodemographic, included 7 age bands, 16-24, 25-34, 35-44, 44-54, 55-64, 65-74 and Over 75 years old. Therefore, the age bands 35-50, 50-64 needed to be expanded to 35-44, 44-54, 55-64 before using that dataset for the subsequent IPF. An algorithm was developed for that specific purpose, where each row representing a single OD pair was expanded to the number of commuters in that pair. Following that, individuals belonging to each age band were selected with Random Sampling, based on the total number of employed population of each band. The bands of 35-49 and 50-64 were split with the same procedure to 35-44 and 55-64, while the remaining individuals were assigned to the last age band of 45-54. After each individual was assigned to each band, the dataset was re-aggregated to each OD pair recreating the initial OD per Age dataset. Therefore, the thought-process behind this algorithm can be summarised into three actions: Expansion, Sampling and Aggregation. An illustration of the cleaning algorithm developed for the OD per Age dataset is depicted in *Figure 3.4*.
 
 
-```{r, fig.cap='**Figure 3.4:** Illustration of the cleaning algorithm for the OD per Age dataset [Source: Self-composed]', fig.height=4, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
+```{r, fig.height=4, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
 img34=readPNG("pics/Chapter3/OD_age_methodology.png")
 grid.raster(img34)
 
 ```
 
+**Figure 3.4:** Illustration of the cleaning algorithm for the OD per Age dataset [Source: Self-composed]
 
 The second issue of the missing OD pairs in the OD per Mode dataset was solved by imputing the modes for each missing pair. More specifically, the total commuters in those OD pairs were already known from the other two OD datasets (per Age and Gender) and the average mode share of each specific mode in the region was found from all the existing OD pairs. Therefore, the mode distribution on the missing pairs was calculated by multiplying the total commuters of each pair with the average mode share.
 
@@ -517,19 +526,20 @@ After the required data cleaning steps, the three datasets were further analysed
 *	working outside of the UK (*code: OD0000004*)
 
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, results=FALSE, fig.cap='**Figure 3.5:** Destination-Workplace types of the employed population [Source: Self-composed]', fig.height=5, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"'}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results=FALSE, fig.height=5, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"'}
 source('Code/Chapter3/Origins_Destinations.R')
 pie=ggpie(total_commuting_numbers, 'Commuting_trips', label='perc', fill='Destination_type',
           palette = (colour=c('#003399', '#006699', '#3399CC')), color='white', lab.pos = 'in', lab.font = c(5,'white'))
 pie
 ```
 
+**Figure 3.5:** Destination-Workplace types of the employed population [Source: Self-composed]
 
 The destination MSOA zones of the employed population of Yorkshire are 5502, in total, (including the countries of Scotland and Northern Ireland), which are almost 1/3 of the total MSOA zones in the UK.
 The trip generation and attraction have been also mapped for all the MSOAs in the region (*Figures 3.6-3.7*) (*see Code/Chapter3/Origins_Destinations.R*). Trip generation is following a uniform spatial distribution across the zones of the region with only one zone in Richmondshire (*code: E02005785*) standing out from the rest with a commuting population of 9012 individuals. The second and third zone, in terms of trip generation, were in the East Riding of Yorkshire (*code: E02002715*) and in Bradford (*code: E02002186*) with 6784 and 6572 individuals, respectively. On the other hand, trip attraction seems to be more concentrated in certain centres of high employment density with the most important being the city centre of Leeds (*code: E02006875*) with 78620 individuals, more than double from the second most important attractor, Hull city centre (*code: E02002680*) with 30593 commuters. Equally important commuting attractions are also the centres of York (*code: E02002784*) and Bradford (*code: E02002221*) with 26709 and 25053 individuals, respectively.
 
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, results=FALSE, fig.cap='**Figure 3.6:** Commuting trip generation [Source: Self-composed]'}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 #source('Code/Chapter3/Origins_Destinations.R')
 
 Generators=tm_shape(Generation_spatial)+
@@ -541,7 +551,9 @@ Generators
 
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, results=FALSE, fig.cap='**Figure 3.7:** Commuting trip attraction [Source: Self-composed]'}
+**Figure 3.6:** Commuting trip generation [Source: Self-composed]
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 #source('Code/Chapter3/Origins_Destinations.R')
 
 Attractors=tm_shape(Attraction_spatial)+
@@ -552,32 +564,45 @@ Attractors=tm_shape(Attraction_spatial)+
 Attractors
 ```
 
+**Figure 3.7:** Commuting trip attraction [Source: Self-composed]
 
 In the following *Figures 3.8-3.11* (*see Code/Chapter3/OD_pairs.R*), the desire lines of commuters attracted to those four attraction centres, based on the real aggregated Census data, are illustrated (excluding interregional and endozonal trips). For Leeds city centre, most commuters, 1221 individuals, are coming from another MSOA zone inside the Local Authority of Leeds (*code: E02006852*), at a distance of nearly 5km, with most of them being car users (65.5%) between 16-34 years old (62.4%). For Hull city centre, 834 and 833 individuals are coming from two other zones inside the Local Authority of Hull (*codes: E02002669, E02002652*), at a distance of 2.7km and 7km, respectively. For the first origin zone, most commuters are either using a bus (28.5%) or a private car (38.6%), although for the second one the vast majority uses a car (63.1%), due to the longer distance. For York city centre, most commuters, 1512, are coming from a nearby MSOA zone (*code: E02002781*), at a distance of nearly 1.4km with 65.7% of them choosing to walk to their destination. Finally, for Bradford city centre, again the majority of commuters, 602, originate from a zone inside the same Local Authority (*code: E02002231*), at a distance of 4.2km, with 71.6% of them being car users.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, results=FALSE, fig.cap='**Figure 3.8:** Commuting trips with destination in Leeds city centre [Source: Self-composed]'}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results=F}
 source('Code/Chapter3/OD_pairs.R')
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#source('Code/Chapter3/OD_pairs.R')
 Yorkmap+od_map_leeds
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, results=FALSE, fig.cap='**Figure 3.9:** Commuting trips with destination in Hull city centre [Source: Self-composed]'}
+**Figure 3.8:** Commuting trips with destination in Leeds city centre [Source: Self-composed]
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 #source('Code/Chapter3/OD_pairs.R')
 Yorkmap+od_map_hull
 
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, results=FALSE, fig.cap='**Figure 3.10:** Commuting trips with destination in York city centre [Source: Self-composed]'}
+**Figure 3.9:** Commuting trips with destination in Hull city centre [Source: Self-composed]
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 #source('Code/Chapter3/OD_pairs.R')
 Yorkmap+od_map_york
 
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, results=FALSE, fig.cap='**Figure 3.11:** Commuting trips with destination in Bradford city centre [Source: Self-composed]'}
+**Figure 3.10:** Commuting trips with destination in York city centre [Source: Self-composed]
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 #source('Code/Chapter3/OD_pairs.R')
 Yorkmap+od_map_bradford
 
 ```
 
+**Figure 3.11:** Commuting trips with destination in Bradford city centre [Source: Self-composed]
 
 Regarding the mode share in the region of Yorkshire, depicted in *Table 3.5* (*see Code/Chapter3/Table35.R*), private car holds the majority of trips with 65% (drivers-passengers) and with an average occupancy rate of only 1.11 persons/vehicle. Worth noting is also the small percentage of bus usage at 9% and cycling at 2.5%, while walking is around 10%.
 
@@ -594,12 +619,14 @@ kable(t_mode_perc) %>%
 Based on the Census data, taking the city centre of Leeds as an example, car commuting trips (*Figure 3.12*) have a larger radius than bus trips (*Figure 3.14*). Specifically, car trips, as depicted in *Figure 3.13*, have a median distance of 9.51km, bus trips seem to be around a certain buffer from the examined zone, with a median distance of 5.34km (*Figure 3.15*). Cycling trips (*Figure 3.16*) have a median distance of 4.96km (*Figure 3.17*) and finally pedestrian trips (*Figure 3.18*) have a far less median distance of 2.37km, as expected (*Figure 3.19*). From the last plot of pedestrian trip distances, various reporting errors, previously mentioned in *Chapter 2* and characteristic of traditional surveys, can be seen, such as the great number of pedestrian trips at distances more than 10km. Even if the distance measured refers only to the straight distance between zone centroids, the majority of those trips should be at a distance that prohibits the full journey to be completed by walking and are probably a result of the respondent’s misreporting or misunderstanding. (*For the code to create these maps and plots see Code/Chapter3/OD_pairs.R*)
 
 
-```{r, echo=FALSE, fig.cap='**Figure 3.12:** Car commuting trips attracted to Leeds city centre [Source: Self-composed]'}
+```{r, echo=FALSE, message=F, warning=F}
 #source('Code/Chapter3/OD_pairs.R')
 Yorkmap+od_map_leeds_car
 ```
 
-```{r, echo=FALSE, fig.cap='**Figure 3.13:** Car commuting trips and OD distance [Source: Self-composed]'}
+**Figure 3.12:** Car commuting trips attracted to Leeds city centre [Source: Self-composed]
+
+```{r, echo=FALSE}
 #source('Code/Chapter3/OD_pairs.R')
 p=ggplot(cardriver_leeds, aes(cardriver_leeds, fill=..count..))
 p+geom_histogram(color = "black", breaks=seq(0, 120000, by =2500))+
@@ -610,13 +637,17 @@ p+geom_histogram(color = "black", breaks=seq(0, 120000, by =2500))+
   
 ```
 
-```{r, echo=FALSE, fig.cap='**Figure 3.14:** Bus commuting trips attracted to Leeds city centre [Source: Self-composed]'}
+**Figure 3.13:** Car commuting trips and OD distance [Source: Self-composed]
+
+```{r, echo=FALSE, warning=F, message=F}
 #source('Code/Chapter3/OD_pairs.R')
 Yorkmap+od_map_leeds_bus
 
 ```
 
-```{r, echo=FALSE, fig.cap='**Figure 3.15:** Bus commuting trips and OD distance [Source: Self-composed]'}
+**Figure 3.14:** Bus commuting trips attracted to Leeds city centre [Source: Self-composed]
+
+```{r, echo=FALSE}
 #source('Code/Chapter3/OD_pairs.R')
 p=ggplot(bus_leeds, aes(bus_leeds, fill=..count..))
 p+geom_histogram(color = "black", breaks=seq(0, 120000, by =2500))+
@@ -627,13 +658,17 @@ p+geom_histogram(color = "black", breaks=seq(0, 120000, by =2500))+
 
 ```
 
-```{r, echo=FALSE, fig.cap='**Figure 3.16:** Cycling commuting trips attracted to Leeds city centre [Source: Self-composed]'}
+**Figure 3.15:** Bus commuting trips and OD distance [Source: Self-composed]
+
+```{r, echo=FALSE, warning=F, message=F}
 #source('Code/Chapter3/OD_pairs.R')
 Yorkmap+od_map_leeds_cycling
 
 ```
 
-```{r, echo=FALSE, fig.cap='**Figure 3.17:** Cycling commuting trips and OD distance [Source: Self-composed]'}
+**Figure 3.16:** Cycling commuting trips attracted to Leeds city centre [Source: Self-composed]
+
+```{r, echo=FALSE}
 #source('Code/Chapter3/OD_pairs.R')
 p=ggplot(cycling_leeds, aes(cycling_leeds, fill=..count..))
 p+geom_histogram(color = "black", breaks=seq(0, 120000, by =2500))+
@@ -643,13 +678,17 @@ p+geom_histogram(color = "black", breaks=seq(0, 120000, by =2500))+
   labs(x = "Distance (m)", y = 'Cycling commuting trips')
 ```
 
-```{r, echo=FALSE, fig.cap='**Figure 3.18:** Pedestrian commuting trips attracted to Leeds city centre [Source: Self-composed]'}
+**Figure 3.17:** Cycling commuting trips and OD distance [Source: Self-composed]
+
+```{r, echo=FALSE, message=F, warning=F}
 #source('Code/Chapter3/OD_pairs.R')
 Yorkmap+od_map_leeds_pedesrian
 
 ```
 
-```{r, echo=FALSE, fig.cap='**Figure 3.19:** Pedestrian commuting trips and OD distance [Source: Self-composed]'}
+**Figure 3.18:** Pedestrian commuting trips attracted to Leeds city centre [Source: Self-composed]
+
+```{r, echo=FALSE}
 #source('Code/Chapter3/OD_pairs.R')
 p=ggplot(walking_leeds, aes(walking_leeds, fill=..count..))
 p+geom_histogram(color = "black", breaks=seq(0, 120000, by =2500))+
@@ -660,7 +699,7 @@ p+geom_histogram(color = "black", breaks=seq(0, 120000, by =2500))+
 
 ```
 
-
+**Figure 3.19:** Pedestrian commuting trips and OD distance [Source: Self-composed]
 
 # Practical Implementation–Results
 
@@ -673,12 +712,13 @@ In this chapter the practical implementation of the methodology developed is des
 The first phase involved the creation of the spatial microdata, which forms the basis of the subsequent phases. IPF was used to allocate the employed individuals in the microdata to their respective zones by using Age, Gender and Occupation as constraint variables. For the implementation of IPF, the R package *“ipfp”* [@blocker_fast_2016] was used, which assigns non-integer weights to each individual creating a 24586x692 matrix, equal to the number of employed individuals x number of MSOA zones. As described in the previous chapter, the algorithm first allocates the individuals to fit the first constraint “Age-Gender”, then it reallocates them to fit the second constraint “Occupation” and it continues this process until there is not any significant change in the weight matrix. The R-syntax to create the weight matrix is the following (*Figure 4.1*), where “cons” is a matrix containing the two constraints and *“ind_catt”* is the transposed matrix of the “flattened” microdata. The *“maxit”* argument refers to the maximum number of iterations and the *“verbose”* argument is only necessary to print the results.
  
 
-```{r, fig.cap='**Figure 4.1:** R syntax for the implementation of IPF [Source: [@lovelace_spatial_2016]', fig.height=.5, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
+```{r, fig.height=.5, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
 img41=readPNG("pics/Chapter4/ipf_syntax.png")
 grid.raster(img41)
 
 ```
 
+**Figure 4.1:** R syntax for the implementation of IPF [Source: [@lovelace_spatial_2016]
 
 The weights produced from this process have a range from 1.42x10^-13^ to 6.18 referring to the number of times the respective individual needed to be multiplied to match the real population. The first 5 rows and columns of the weight matrix are depicted in *Table 4.1* (*see Code/Chapter4/IPF.R*).
 
@@ -704,12 +744,13 @@ kable(weights_sel)%>%
 
 The TRS algorithm was used at the next step to further manipulate the initial weight matrix and produce a new weight matrix with only integer values. The R-syntax for the TRS algorithm is presented in *Figure 4.2*. Despite the worse total fit, the integerised weight matrix is necessary to allocate whole individuals to their best-fitted zone, rather than a fraction of them. TRS was selected as the integerisation method, because it results in a minimum information loss. In *Table 4.2*, the equivalent integerised version of *Table 4.1*, after the implementation of TRS, is presented (*see Code/Chapter4/IPF.R*).
 
-```{r, fig.cap='**Figure 4.2:** R-syntax for the TRS algorithm [Source: [@lovelace_spatial_2016]', fig.height=.5, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
+```{r, fig.height=.5, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
 img42=readPNG("pics/Chapter4/trs.png")
 grid.raster(img42)
 
 ```
 
+**Figure 4.2:** R-syntax for the TRS algorithm [Source: [@lovelace_spatial_2016]
 
 **Table 4.2:** Integerised weight matrix for the first 5 individuals and the first 5 MSOA zones
 
@@ -735,14 +776,12 @@ kable(weights_int_sel)%>%
 
 Regarding the important process of validation, internal validation was done first, to identify and address any issues related to the underlying data and the algorithms used *(IPF-TRS)*. Pearson correlation and Relative Error for the zonal totals and each respective variable level are presented in *Table 4.3* (*see Code/Chapter4/IPF_fitStats.R*). A perfect fit is achieved for the simulated zonal totals *(corr=1.0, R.E.=0)*, while also both Gender level variables *(male-female)* achieved an almost perfect fit *(corr=0.998)*. The Age and Occupation level variables were simulated at an acceptable level *(corr>0.90)*, with the Over 75 years of age variable being the one with the worst fit *(corr=0.935, R.E=0.178)*, due to its small total number *(11936 real individuals)*. Scatter plots depicting the simulated and the real values of the zonal totals and each respective variable level are presented in *Appendix II (Figures A.19-A.37)*. Overall, the simulated spatial microdata managed to successfully distribute the individuals into zones and represent the underlying real population at a high level of accuracy.
 
-**Table 4.3:** Fit statistics of Spatial Microdata
-
-
 ```{r, echo=F, warning=F, message=F, results=F}
 source('Code/Chapter4/IPF_fitStats.R')
 
 ```
 
+**Table 4.3:** Fit statistics of Spatial Microdata
 
 ```{r, echo=F, warning=F, message=F}
 
@@ -774,12 +813,12 @@ kable(ext_fitStats_df)%>%
 
 After the successful allocation of individuals to the MSOA zones, a new column is added to the created spatial microdata with the code of each zone, representing the Origin or the area of residence. In *Table 4.5* (*see Code/Chapter4/Sampled_individuals.R*) the first 5 individuals of *Table 3.2* are presented with the new Origin zone column depicting only one of the zones each individual is allocated to. Furthermore, in *Figure 4.3* their Origin zones are depicted inside the region of Yorkshire and are coloured according to their gender.
 
-**Table 4.5:** Spatial microdata for the first 5 individuals
-
 ```{r, echo=F, message=F, warning=F, results=F}
 source('Code/Chapter4/Sampled_individuals.R')
 
 ```
+
+**Table 4.5:** Spatial microdata for the first 5 individuals
 
 ```{r, echo=F, message=F, warning=F}
 
@@ -792,7 +831,7 @@ kable(ind_sample_Origin_final_sel)%>%
 
 [Source: Self-composed]
 
-```{r, echo=F, message=F, warning=F, results=F, fig.cap='**Figure 4.3:** Simulated Origins for the first 5 individuals in the spatial microdata [Source: Self-composed]'}
+```{r, echo=F, message=F, warning=F}
 #source('Code/Chapter4/Sampled_individuals.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
@@ -809,9 +848,11 @@ Yorkmap+sampled_map
 
 ```
 
+**Figure 4.3:** Simulated Origins for the first 5 individuals in the spatial microdata [Source: Self-composed]
+
 As previously mentioned, the main advantage of Spatial Microsimulation and the creation of the spatial microdata is the ability to map the spatial distribution of variables that were previously included only in the microdata and not in the aggregated datasets, hence they did not contain any geographic information. Taking the “Approximated Social Grade” variable as an example, although its real spatial distribution for the employed population is unknown, its simulated distribution can be derived as a result of Spatial Microsimulation *(Figures 4.4-4.7)* (*see Code/Chapter4/IPF_fitStats.R*).
 
-```{r, echo=F, fig.cap='**Figure 4.4:** Spatial distribution of employed individuals with Social Grade A-B [Self-composed]'}
+```{r, echo=F, message=F, warning=F}
 
 tm_shape(Simulated_Yorkshire)+
   tm_fill('SG_AB_perc', palette = "Blues", title = 'Social Grade A-B percentage')+
@@ -822,7 +863,9 @@ tm_shape(Simulated_Yorkshire)+
 
 ```
 
-```{r, echo=F, fig.cap='**Figure 4.5:** Spatial distribution of employed individuals with Social Grade C1 [Self-composed]'}
+**Figure 4.4:** Spatial distribution of employed individuals with Social Grade A-B [Self-composed]
+
+```{r, echo=F, warning=F, message=F}
 tm_shape(Simulated_Yorkshire)+
   tm_fill('SG_C1_perc', palette = "Blues", title = 'Social Grade C1 percentage')+
   tm_borders(alpha=.5)+
@@ -832,7 +875,9 @@ tm_shape(Simulated_Yorkshire)+
 
 ```
 
-```{r, echo=F, fig.cap='**Figure 4.6:** Spatial distribution of employed individuals with Social Grade C2 [Self-composed]'}
+**Figure 4.5:** Spatial distribution of employed individuals with Social Grade C1 [Self-composed]
+
+```{r, echo=F, message=F, warning=F}
 tm_shape(Simulated_Yorkshire)+
   tm_fill('SG_C2_perc', palette = "Blues", title = 'Social Grade C2 percentage')+
   tm_borders(alpha=.5)+
@@ -841,7 +886,9 @@ tm_shape(Simulated_Yorkshire)+
 
 ```
 
-```{r, echo=F, fig.cap='**Figure 4.7:** Spatial distribution of employed individuals with Social Grade D-E [Self-composed]'}
+**Figure 4.6:** Spatial distribution of employed individuals with Social Grade C2 [Self-composed]
+
+```{r, echo=F, message=F, warning=F}
 
 tm_shape(Simulated_Yorkshire)+
   tm_fill('SG_DE_perc', palette = "Blues", title = 'Social Grade D-E percentage')+
@@ -850,7 +897,7 @@ tm_shape(Simulated_Yorkshire)+
   tm_scale_bar()
 ```
 
-
+**Figure 4.7:** Spatial distribution of employed individuals with Social Grade D-E [Self-composed]
 
 ## Second phase: Origin-Destination microdata
 
@@ -858,11 +905,13 @@ tm_shape(Simulated_Yorkshire)+
 
 The second phase, including the allocation of a Destination or Workplace to each individual, involved the use of IPF for each MSOA zone separately. The individuals of each Origin zone were allocated to a Destination, based on the commuters’ real Gender and Age in that specific Origin-Destination trip. Therefore, IPF was implemented 692 times and for that reason a *“for loop”* structure was used in the R programming language with the following syntax *(Figure 4.8)*. 
 
-```{r, fig.cap='**Figure 4.8:** R-syntax for the implementation of IPF per Origin zone [Source: Self-composed;  [@lovelace_spatial_2016]]', fig.height=1.5, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
+```{r, fig.height=1.5, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
 img48=readPNG("pics/Chapter4/ipf_OD.png")
 grid.raster(img48)
 
 ```
+
+**Figure 4.8:** R-syntax for the implementation of IPF per Origin zone [Source: Self-composed;  [@lovelace_spatial_2016]]
 
 In the presented code snippet above, the individuals of each Origin zone and the respective aggregated commuters’ Gender and Age of all the OD trips originated from that zone are selected. Through the use of IPF, non-integer weights are allocated to each individual of each Origin zone to match the total commuting population of each OD trip.
 
@@ -870,11 +919,13 @@ In the presented code snippet above, the individuals of each Origin zone and the
 
 The integerisation of the initial weight matrix was also implemented for each zone separately with the TRS algorithm, as described in *Paragraph 4.1.2*. In *Figure 4.9* the TRS syntax is presented, which is inside the for-loop of *Figure 4.8*.
 
-```{r, fig.cap='**Figure 4.9:** R-syntax for the implementation of TRS per Origin zone [Source: Self-composed;  [@lovelace_spatial_2016; @lovelace_truncate_2013]]', fig.height=1, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
+```{r, fig.height=1, out.extra='style="background-color: #C0C0C0; padding:1px; display: inline-block;"', echo=FALSE}
 img49=readPNG("pics/Chapter4/trs_OD.png")
 grid.raster(img49)
 
 ```
+
+**Figure 4.9:** R-syntax for the implementation of TRS per Origin zone [Source: Self-composed;  [@lovelace_spatial_2016; @lovelace_truncate_2013]]
 
 ###	Fit statistics
 
@@ -908,7 +959,7 @@ kable(ind_sample_Destination_final_sel)%>%
 
 [Source: Self-composed]
 
-```{r, echo=F, message=F, warning=F, results=F, fig.cap='**Figure 4.10:** Origin-Residence (green)-Destination-Workplace (orange) of the first 5 individuals [Source: Self-composed]'}
+```{r, echo=F, message=F, warning=F}
 #source('Code/Chapter4/Sampled_individuals.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
@@ -934,10 +985,11 @@ Yorkmap+origin_zones+sampled_destination_zones_map+sampled_map
 
 ```
 
+**Figure 4.10:** Origin-Residence (green)-Destination-Workplace (orange) of the first 5 individuals [Source: Self-composed]
 
 At this point, the sociodemographic characteristics of individuals commuting to certain destinations can also be mapped. Taking the “Approximate Social Grade” variable as an example, *Figures 4.11-4.14* (*see Code/Chapter4/IPF_OD_fitStats.R*) illustrate the percentages belonging to each Social Grade level that are commuting to each Destination zone. As it can be seen, most high-level Social Grade commuters (A-B-C1) are commuting towards the zones in the central and west Yorkshire, where the cities of Leeds and York are located, while the lower Social Grade commuters (C2-D-E) are commuting more towards the north, east and south. Similar insights of that level of detail could have the potential to lead to better-informed policy decisions, as it is described in the case study of the next chapter.
 
-```{r, echo=FALSE, fig.cap='**Figure 4.11:** Destination zones with commuters of Social Grade A-B [Source: Self-composed]'}
+```{r, echo=FALSE, message=F, warning=F}
 #source('Code/Chapter4/IPF_OD_fitStats.R')
 
 tm_shape(Destination_OD_sexage_spatial)+
@@ -947,7 +999,9 @@ tm_shape(Destination_OD_sexage_spatial)+
   tm_scale_bar()
 ```
 
-```{r, echo=FALSE, fig.cap='**Figure 4.12:** Destination zones with commuters of Social Grade C1 [Source: Self-composed]'}
+**Figure 4.11:** Destination zones with commuters of Social Grade A-B [Source: Self-composed]
+
+```{r, echo=FALSE, message=F, warning=F}
 #source('Code/Chapter4/IPF_OD_fitStats.R')
 
 tm_shape(Destination_OD_sexage_spatial)+
@@ -957,7 +1011,9 @@ tm_shape(Destination_OD_sexage_spatial)+
   tm_scale_bar()
 ```
 
-```{r, echo=FALSE, fig.cap='**Figure 4.13:** Destination zones with commuters of Social Grade C2 [Source: Self-composed]'}
+**Figure 4.12:** Destination zones with commuters of Social Grade C1 [Source: Self-composed]
+
+```{r, echo=FALSE, warning=F, message=F}
 #source('Code/Chapter4/IPF_OD_fitStats.R')
 
 tm_shape(Destination_OD_sexage_spatial)+
@@ -968,7 +1024,9 @@ tm_shape(Destination_OD_sexage_spatial)+
 
 ```
 
-```{r, echo=FALSE, fig.cap='**Figure 4.14:** Destination zones with commuters of Social Grade D-E [Source: Self-composed]'}
+**Figure 4.13:** Destination zones with commuters of Social Grade C2 [Source: Self-composed]
+
+```{r, echo=FALSE, message=F, warning=F}
 #source('Code/Chapter4/IPF_OD_fitStats.R')
 
 tm_shape(Destination_OD_sexage_spatial)+
@@ -979,6 +1037,7 @@ tm_shape(Destination_OD_sexage_spatial)+
 
 ```
 
+**Figure 4.14:** Destination zones with commuters of Social Grade D-E [Source: Self-composed]
 
 ## Third phase: Mode imputation
 
@@ -1001,7 +1060,7 @@ kable(ind_sample_Mode_sel)%>%
 
 [Source: Self-composed]
 
-```{r, echo=F, message=F, warning=F, fig.cap='**Figure 4.15:** Mode of travel for the first 5 individuals [Source: Self-composed]'}
+```{r, echo=F, message=F, warning=F}
 #source('Code/Chapter4/Sampled_individuals.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
@@ -1027,6 +1086,7 @@ sampled_ind_map=tm_shape(spatial_ind_sample_Mode)+
 Yorkmap+origin_zones+sampled_destination_zones_map+sampled_ind_map
 ```
 
+**Figure 4.15:** Mode of travel for the first 5 individuals [Source: Self-composed]
 
 #	Case study: Clean Air Zone scheme
 
@@ -1062,11 +1122,11 @@ kable(Scenarios)%>%
 
 With the use of the OD microdata, researchers can aggregate certain individual variables to derive interesting insights that were previously not included in the Census data. For the current case-study, these insights could refer to the commuter’s sociodemographic characteristics and their preferred commuting mode. From the variables included in the microdata, the “Approximated Social Grade” can act as a proxy of purchasing power, as presented in the graph of *Appendix V (Figure A.53)*. Analysis of the Social Grade and Mode of travel for commuters affected from the scheme is presented in *Table 5.2* (*see Code/Chapter5/case_study.R*). The same kind of analysis can also be conducted for every variable of interest. As depicted in the histogram of *Figure 5.1* both commuting populations have a similar social grade distribution, as Mode was randomly allocated without any prior knowledge of the underlying relation with any of the existing microdata variables.
 
-**Table 5.2:** Number of commuters affected based on their social grade
-
 ```{r, echo=F, warning=F, message=F, results=F}
 source('Code/Chapter5/case_study.R')
 ```
+
+**Table 5.2:** Number of commuters affected based on their social grade
 
 ```{r, echo=F}
 
@@ -1077,7 +1137,7 @@ kable(affected_population2)%>%
 
 [Source: Self-composed]
 
-```{r, echo=F, fig.cap='**Figure 5.1:** Social grade distribution of affected car and PT commuters [Source: Self-composed]'}
+```{r, echo=F, warning=F, message=F}
 # source('Code/Chapter5/case_study.R')
 
 p <-ggplot(affected_population3, aes(x=Social_Grade, y=value, fill=variable))
@@ -1085,10 +1145,11 @@ p +geom_bar(stat = "identity", position='dodge')+
   theme(text = element_text(size = 20))
 ```
 
+**Figure 5.1:** Social grade distribution of affected car and PT commuters [Source: Self-composed]
 
 In the following *Figures 5.2-5.9*, car and PT commuters with a Workplace in the Leeds city centre are mapped, based on their “Approximated Social Grade”. Contrary to their population distribution, there is a degree of difference between the spatial distribution of car and PT commuters. Nonetheless, there is not a significant difference in the spatial distribution of different social grade classes among only car or only PT commuters. As presented in *Table 5.3*, most car users are commuting to Leeds city centre from another zone within the same Local Authority, while most PT commuters have their origins in Bradford.
 
-```{r, echo=F, fig.cap='**Figure 5.2:** Desire lines of car commuters with Social Grade A-B and a destination in the Leeds city centre [Source: Self-composed]'}
+```{r, echo=F, message=F, warning=F}
 # source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
@@ -1103,7 +1164,9 @@ Yorkmap+od_map_SG_AB_car
 
 ```
 
-```{r, echo=F, fig.cap='**Figure 5.3:** Desire lines of car commuters with Social Grade C1 and a destination in the Leeds city centre [Source: Self-composed]'}
+**Figure 5.2:** Desire lines of car commuters with Social Grade A-B and a destination in the Leeds city centre [Source: Self-composed]
+
+```{r, echo=F, warning=F, message=F}
 # source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
@@ -1118,7 +1181,9 @@ od_map_SG_C1_car=tm_shape(spatial_agg_car_commuters_SG_C1_Leeds)+
 Yorkmap+od_map_SG_C1_car
 ```
 
-```{r, echo=F, fig.cap='**Figure 5.4:** Desire lines of car commuters with Social Grade C2 and a destination in the Leeds city centre [Source: Self-composed]'}
+**Figure 5.3:** Desire lines of car commuters with Social Grade C1 and a destination in the Leeds city centre [Source: Self-composed]
+
+```{r, echo=F, warning=F, message=F}
 # source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
@@ -1134,7 +1199,9 @@ Yorkmap+od_map_SG_C2_car
 
 ```
 
-```{r, echo=F, fig.cap='**Figure 5.5:** Desire lines of car commuters with Social Grade D-E and a destination in the Leeds city centre [Source: Self-composed]'}
+**Figure 5.4:** Desire lines of car commuters with Social Grade C2 and a destination in the Leeds city centre [Source: Self-composed]
+
+```{r, echo=F, warning=F, message=F}
 # source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
@@ -1150,7 +1217,9 @@ Yorkmap+od_map_SG_DE_car
 
 ```
 
-```{r, echo=F, fig.cap='**Figure 5.6:** Desire lines of PT commuters with Social Grade A-B and a destination in the Leeds city centre [Source: Self-composed]'}
+**Figure 5.5:** Desire lines of car commuters with Social Grade D-E and a destination in the Leeds city centre [Source: Self-composed]
+
+```{r, echo=F, message=F, warning=F}
 # source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
@@ -1166,7 +1235,9 @@ Yorkmap+od_map_SG_AB_pt
 
 ```
 
-```{r, echo=F, fig.cap='**Figure 5.7:** Desire lines of PT commuters with Social Grade C1 and a destination in the Leeds city centre [Source: Self-composed]'}
+**Figure 5.6:** Desire lines of PT commuters with Social Grade A-B and a destination in the Leeds city centre [Source: Self-composed]
+
+```{r, echo=F, warning=F, message=F}
 # source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
@@ -1182,7 +1253,9 @@ Yorkmap+od_map_SG_C1_pt
 
 ```
 
-```{r, echo=F, fig.cap='**Figure 5.8:** Desire lines of PT commuters with Social Grade C2 and a destination in the Leeds city centre [Source: Self-composed]'}
+**Figure 5.7:** Desire lines of PT commuters with Social Grade C1 and a destination in the Leeds city centre [Source: Self-composed]
+
+```{r, echo=F, warning=F, message=F}
 # source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
@@ -1198,7 +1271,9 @@ Yorkmap+od_map_SG_C2_pt
 
 ```
 
-```{r, echo=F, fig.cap='**Figure 5.9:** Desire lines of PT commuters with Social Grade D-E and a destination in the Leeds city centre [Source: Self-composed]'}
+**Figure 5.8:** Desire lines of PT commuters with Social Grade C2 and a destination in the Leeds city centre [Source: Self-composed]
+
+```{r, echo=F, warning=F, message=F}
 # source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
@@ -1213,6 +1288,8 @@ od_map_SG_DE_pt=tm_shape(spatial_agg_PT_commuters_SG_DE_Leeds)+
 Yorkmap+od_map_SG_DE_pt
 
 ```
+
+**Figure 5.9:** Desire lines of PT commuters with Social Grade D-E and a destination in the Leeds city centre [Source: Self-composed]
 
 **Table 5.3:** Origin zones with the most car or public transport commuters based on their social grade
 
@@ -1247,7 +1324,7 @@ kable(Origins_affected_perc)%>%
 
 [Source: Self-composed]
 
-```{r, echo=F, fig.cap='**Figure 5.10:** Affected car commuters (Losers) with Social Grade A-B [Source: Self-composed]'}
+```{r, echo=F, message=F, warning=F}
 # source('Code/Chapter5/case_study.R')
 
 affected_car_AB = tm_shape(spatial_agg_car_commuters_SG_AB_Leeds_Origins)+
@@ -1268,7 +1345,9 @@ Yorkmap = tm_shape(Yorkshire1)+
 affected_car_AB+Leeds+Yorkmap
 ```
 
-```{r, echo=F, fig.cap='**Figure 5.11:** Affected car commuters (Losers) with Social Grade C1 [Source: Self-composed]'}
+**Figure 5.10:** Affected car commuters (Losers) with Social Grade A-B [Source: Self-composed]
+
+```{r, echo=F, message=F, warning=F}
 # source('Code/Chapter5/case_study.R')
 
 affected_car_C1=tm_shape(spatial_agg_car_commuters_SG_C1_Leeds_Origins)+
@@ -1289,7 +1368,9 @@ Yorkmap = tm_shape(Yorkshire1)+
 affected_car_C1+Leeds+Yorkmap
 ```
 
-```{r, echo=F, fig.cap='**Figure 5.12:** Affected car commuters (Losers) with Social Grade C2 [Source: Self-composed]'}
+**Figure 5.11:** Affected car commuters (Losers) with Social Grade C1 [Source: Self-composed]
+
+```{r, echo=F, message=F, warning=F}
 # source('Code/Chapter5/case_study.R')
 
 affected_car_C2=tm_shape(spatial_agg_car_commuters_SG_C2_Leeds_Origins)+
@@ -1311,7 +1392,9 @@ affected_car_C2+Leeds+Yorkmap
 
 ```
 
-```{r, echo=F, fig.cap='**Figure 5.13:** Affected car commuters (Losers) with Social Grade D-E [Source: Self-composed]'}
+**Figure 5.12:** Affected car commuters (Losers) with Social Grade C2 [Source: Self-composed]
+
+```{r, echo=F, message=F, warning=F}
 # source('Code/Chapter5/case_study.R')
 
 affected_car_DE=tm_shape(spatial_agg_car_commuters_SG_DE_Leeds_Origins)+
@@ -1332,7 +1415,9 @@ Yorkmap = tm_shape(Yorkshire1)+
 affected_car_DE+Leeds+Yorkmap
 ```
 
-```{r, echo=F, fig.cap='**Figure 5.14:** Affected PT commuters (Winners) with Social Grade A-B [Source: Self-composed]'}
+**Figure 5.13:** Affected car commuters (Losers) with Social Grade D-E [Source: Self-composed]
+
+```{r, echo=F, warning=F, message=F}
 # source('Code/Chapter5/case_study.R')
 
 affected_PT_AB=tm_shape(spatial_agg_PT_commuters_SG_AB_Leeds_Origins)+
@@ -1354,7 +1439,9 @@ affected_PT_AB+Leeds+Yorkmap
 
 ```
 
-```{r, echo=F, fig.cap='**Figure 5.15:** Affected PT commuters (Winners) with Social Grade C1 [Source: Self-composed]'}
+**Figure 5.14:** Affected PT commuters (Winners) with Social Grade A-B [Source: Self-composed]
+
+```{r, echo=F, warning=F, message=F}
 # source('Code/Chapter5/case_study.R')
 
 affected_PT_C1=tm_shape(spatial_agg_PT_commuters_SG_C1_Leeds_Origins)+
@@ -1375,7 +1462,9 @@ Yorkmap = tm_shape(Yorkshire1)+
 affected_PT_C1+Leeds+Yorkmap
 ```
 
-```{r, echo=F, fig.cap='**Figure 5.16:** Affected PT commuters (Winners) with Social Grade C2 [Source: Self-composed]'}
+**Figure 5.15:** Affected PT commuters (Winners) with Social Grade C1 [Source: Self-composed]
+
+```{r, echo=F, warning=F, message=F}
 # source('Code/Chapter5/case_study.R')
 
 affected_PT_C2=tm_shape(spatial_agg_PT_commuters_SG_C2_Leeds_Origins)+
@@ -1396,7 +1485,9 @@ Yorkmap = tm_shape(Yorkshire1)+
 affected_PT_C2+Leeds+Yorkmap
 ```
 
-```{r, echo=F, fig.cap='**Figure 5.17:** Affected PT commuters (Winners) with Social Grade D-E [Source: Self-composed]'}
+**Figure 5.16:** Affected PT commuters (Winners) with Social Grade C2 [Source: Self-composed]
+
+```{r, echo=F, message=F, warning=F}
 # source('Code/Chapter5/case_study.R')
 
 affected_PT_DE=tm_shape(spatial_agg_PT_commuters_SG_DE_Leeds_Origins)+
@@ -1418,12 +1509,13 @@ affected_PT_DE+Leeds+Yorkmap
 
 ```
 
+**Figure 5.17:** Affected PT commuters (Winners) with Social Grade D-E [Source: Self-composed]
 
 ## Individual-level analysis
 
 In addition to the aggregated analysis, the OD microdata also provides the ability for a similar type of analysis at a greater level of detail, e.g. for specific individuals. For that purpose, two randomly selected individuals, a car commuter (car passenger) and a public transport commuter (train user), are presented in *Figure 5.18*, along with some of their sociodemographic characteristics. As it is depicted, the first individual is a young female car user (*“Gender” 2*) of age between 25-34 years old (*“Age” 3*), social grade of D or E (*“Approximated Social Grade” 4*) and she usually between 31 to 48 hours per week (*“Hours worked per week” 3*) at retail (*“Industry” 4*). On the other hand, the second commuter is an older female bus user (*“Gender” 2*) of age between 45-54 (*“Age” 5*), social grade of A or B (*“Approximated Social Grade” 1*) working part-time of around 16-30 hours per week (*“Hours worked per week” 2*) in activities related to education (*“Industry” 10*). Looking at the 2 sampled individuals, it is obvious that the proposed scheme would benefit a wealthy individual at the expense of a younger one with a possible low income. Specifically, the first individual with an estimated net annual income of £10000 (*see Figure A.53*) would have to pay an extra amount of £500 per year for 250 working days (*£2x250 working days-excluding weekends and bank holidays*), which is 2.8% of her total income and would need to double her transport budget from £2x250=£500 to £4x250=£1000. Similar insights at the individual level have the potential to provide a clear understanding of the repercussions of a certain policy and give the ability to prepare additional complementary measures to minimize the negative impacts.
 
-```{r, echo=F, message=F, warning=F, fig.cap='**Figure 5.18:** Desire lines, travel mode and main sociodemographic characteristics for the two sampled individuals affected from the scheme [Source: Self-composed]'}
+```{r, echo=F, message=F, warning=F}
 # source('Code/Chapter5/case_study.R')
 
 Yorkmap = tm_shape(Yorkshire1)+
@@ -1448,6 +1540,7 @@ Yorkmap+origin_zones+sampled_destination_zones_map+sampled_map
 
 ```
 
+**Figure 5.18:** Desire lines, travel mode and main sociodemographic characteristics for the two sampled individuals affected from the scheme [Source: Self-composed]
 
 ##	Result discussion
 

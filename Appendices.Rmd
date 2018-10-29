@@ -18,7 +18,7 @@ csl: harvard-university-of-leeds.csl
 
 To reproduce this paper you need the following packages:
 
-```{r}
+```{r, warning=F, message=F}
 
 pkgs <- c(
   "pscl",      # to compute R-squared
@@ -44,6 +44,8 @@ if(length(to_install)){
 
 # Load all the required packages
 eval(parse(text=paste("library(",pkgs,")")))
+
+tmap_mode("view") # To have interactive maps
 ```
 
 ```{r setup, include=FALSE}
@@ -59,147 +61,274 @@ source('Code/Appendices/Appendix_I.R')
 
 ```
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapviewOptions(vector.palette = colorRampPalette(c("snow", "cornflowerblue", "grey10")))
+# 
+# mapview(Initial_spatial, zcol = 'Male_perc', legend = T, alpha = 0.5, layer.name = 'Male percentage')
 
-mapviewOptions(vector.palette = colorRampPalette(c("snow", "cornflowerblue", "grey10")))
-
-mapview(Initial_spatial, zcol = 'Male_perc', legend = T, alpha = 0.5, layer.name = 'Male percentage')
+# Code for tmap
+map_Male=tm_shape(Initial_spatial)+
+  tm_fill('Male_perc', palette = "Blues", title = 'Male percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_Male
 ```
 
 **Figure A.1:** Spatial distribution of male employed individuals [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Female_perc', legend = T, alpha = 0.5, layer.name = 'Female percentage')
 
-mapview(Initial_spatial, zcol = 'Female_perc', legend = T, alpha = 0.5, layer.name = 'Female percentage')
-
+# Code for tmap
+map_Female=tm_shape(Initial_spatial)+
+  tm_fill('Female_perc', palette = "Blues", title = 'Female percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_Female
 ```
 
 **Figure A.2:** Spatial distribution of female employed individuals [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Age.16_24_perc', legend = T, alpha = 0.5, layer.name = 'Age 16-24 percentage')
 
-mapview(Initial_spatial, zcol = 'Age.16_24_perc', legend = T, alpha = 0.5, layer.name = 'Age 16-24 percentage')
-
+# Code for tmap
+map_16_24=tm_shape(Initial_spatial)+
+  tm_fill('Age.16_24_perc', palette = "Blues", title = 'Age 16-24 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_16_24
 ```
 
 **Figure A.3:** Spatial distribution of employed individuals between 16-24 years old [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Age.25_34_perc', legend = T, alpha = 0.5, layer.name = 'Age 25-34 percentage')
 
-mapview(Initial_spatial, zcol = 'Age.25_34_perc', legend = T, alpha = 0.5, layer.name = 'Age 25-34 percentage')
-
+# Code for tmap
+map_25_34=tm_shape(Initial_spatial)+
+  tm_fill('Age.25_34_perc', palette = "Blues", title = 'Age 25-34 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_25_34
 ```
 
 **Figure A.4:** Spatial distribution of employed individuals between 25-34 years old [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Age.35_44_perc', legend = T, alpha = 0.5, layer.name = 'Age 35-44 percentage')
 
-mapview(Initial_spatial, zcol = 'Age.35_44_perc', legend = T, alpha = 0.5, layer.name = 'Age 35-44 percentage')
-
+# Code for tmap
+map_35_44=tm_shape(Initial_spatial)+
+  tm_fill('Age.35_44_perc', palette = "Blues", title = 'Age 35-44 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_35_44
 ```
 
 **Figure A.5:** Spatial distribution of employed individuals between 35-44 years old [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Age.45_54_perc', legend = T, alpha = 0.5, layer.name = 'Age 45-54 percentage')
 
-mapview(Initial_spatial, zcol = 'Age.45_54_perc', legend = T, alpha = 0.5, layer.name = 'Age 45-54 percentage')
-
+# Code for tmap
+map_45_54=tm_shape(Initial_spatial)+
+  tm_fill('Age.45_54_perc', palette = "Blues", title = 'Age 45-54 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_45_54
 ```
 
 **Figure A.6:** Spatial distribution of employed individuals between 45-54 years old [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Age.55_64_perc', legend = T, alpha = 0.5, layer.name = 'Age 55-64 percentage')
 
-mapview(Initial_spatial, zcol = 'Age.55_64_perc', legend = T, alpha = 0.5, layer.name = 'Age 55-64 percentage')
-
+# Code for tmap
+map_55_64=tm_shape(Initial_spatial)+
+  tm_fill('Age.55_64_perc', palette = "Blues", title = 'Age 55-64 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_55_64
 ```
 
 **Figure A.7:** Spatial distribution of employed individuals between 55-64 years old [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Age.65_74_perc', legend = T, alpha = 0.5, layer.name = 'Age 65-74 percentage')
 
-mapview(Initial_spatial, zcol = 'Age.65_74_perc', legend = T, alpha = 0.5, layer.name = 'Age 65-74 percentage')
-
+# Code for tmap
+map_65_74=tm_shape(Initial_spatial)+
+  tm_fill('Age.65_74_perc', palette = "Blues", title = 'Age 65-74 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_65_74
 ```
 
 **Figure A.8:** Spatial distribution of employed individuals between 65-74 years old [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Age.Over75_perc', legend = T, alpha = 0.5, layer.name = 'Age Over 75 percentage')
 
-mapview(Initial_spatial, zcol = 'Age.Over75_perc', legend = T, alpha = 0.5, layer.name = 'Age Over 75 percentage')
-
+# Code for tmap
+map_Over75=tm_shape(Initial_spatial)+
+  tm_fill('Age.Over75_perc', palette = "Blues", title = 'Age Over 75 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_Over75
 ```
 
 **Figure A.9:** Spatial distribution of employed individuals over 75 years old [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Occ1_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 1 percentage')
 
-mapview(Initial_spatial, zcol = 'Occ1_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 1 percentage')
-
+# Code for tmap
+map_Occ1=tm_shape(Initial_spatial)+
+  tm_fill('Occ1_perc', palette = "Blues", title = 'Occupation 1 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_Occ1
 ```
 
 **Figure A.10:** Spatial distribution of individuals employed as Managers-Directors-Seniors [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Occ2_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 2 percentage')
 
-mapview(Initial_spatial, zcol = 'Occ2_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 2 percentage')
-
+# Code for tmap
+map_Occ2=tm_shape(Initial_spatial)+
+  tm_fill('Occ2_perc', palette = "Blues", title = 'Occupation 2 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_Occ2
 ```
 
 **Figure A.11:** Spatial distribution of individuals employed in professional occupations [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Occ3_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 3 percentage')
 
-mapview(Initial_spatial, zcol = 'Occ3_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 3 percentage')
-
+# Code for tmap
+map_Occ3=tm_shape(Initial_spatial)+
+  tm_fill('Occ3_perc', palette = "Blues", title = 'Occupation 3 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_Occ3
 ```
 
 **Figure A.12:** Spatial distribution of individuals employed in associate professional and technical occupations [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Occ4_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 4 percentage')
 
-mapview(Initial_spatial, zcol = 'Occ4_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 4 percentage')
-
+# Code for tmap
+map_Occ4=tm_shape(Initial_spatial)+
+  tm_fill('Occ4_perc', palette = "Blues", title = 'Occupation 4 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_Occ4
 ```
 
 **Figure A.13:** Spatial distribution of individuals employed in administrative-secretarial positions [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Occ5_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 5 percentage')
 
-mapview(Initial_spatial, zcol = 'Occ5_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 5 percentage')
-
+# Code for tmap
+map_Occ5=tm_shape(Initial_spatial)+
+  tm_fill('Occ5_perc', palette = "Blues", title = 'Occupation 5 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_Occ5
 ```
 
 **Figure A.14:** Spatial distribution of individuals employed in skilled trades [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Occ6_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 6 percentage')
 
-mapview(Initial_spatial, zcol = 'Occ6_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 6 percentage')
-
+# Code for tmap
+map_Occ6=tm_shape(Initial_spatial)+
+  tm_fill('Occ6_perc', palette = "Blues", title = 'Occupation 6 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_Occ6
 ```
 
 **Figure A.15:** Spatial distribution of individuals employed in Caring-Leisure-Other [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Occ7_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 7 percentage')
 
-mapview(Initial_spatial, zcol = 'Occ7_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 7 percentage')
-
+# Code for tmap
+map_Occ7=tm_shape(Initial_spatial)+
+  tm_fill('Occ7_perc', palette = "Blues", title = 'Occupation 7 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_Occ7
 ```
 
 **Figure A.16:** Spatial distribution of individuals employed in Sales-Customer services [Source: Self-composed]
 
 ```{r, echo=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Occ8_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 8 percentage')
 
-mapview(Initial_spatial, zcol = 'Occ8_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 8 percentage')
-
+# Code for tmap
+map_Occ8=tm_shape(Initial_spatial)+
+  tm_fill('Occ8_perc', palette = "Blues", title = 'Occupation 8 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_Occ8
 ```
 
 **Figure A.17:** Spatial distribution of individuals employed in Process-Plant-Machine operatives [Source: Self-composed]
 
-```{r, echo=F}
+```{r, echo=F, message=F, warning=F}
+# Code for Mapview
+# mapview(Initial_spatial, zcol = 'Occ9_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 9 percentage')
 
-mapview(Initial_spatial, zcol = 'Occ9_perc', legend = T, alpha = 0.5, layer.name = 'Occupation 9 percentage')
-
+# Code for tmap
+map_Occ9=tm_shape(Initial_spatial)+
+  tm_fill('Occ9_perc', palette = "Blues", title = 'Occupation 9 percentage')+
+  tm_borders(alpha=.5)+
+  tm_compass(position = c('left', 'top'))+
+  tm_scale_bar()
+map_Occ9
 ```
 
 **Figure A.18:** Spatial distribution of individuals employed in Elementary occupations [Source: Self-composed] 
